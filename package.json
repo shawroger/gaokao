@@ -1,0 +1,13 @@
+{
+  "name": "gaokao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "deploy": "now . --prod",
+    "serve": "serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
