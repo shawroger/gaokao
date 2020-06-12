@@ -14,6 +14,7 @@ EasyTable.init()
 			{ able: false, mode: null, label: "序号" },
 			{
 				able: true,
+				sort: true,
 				mode: classMode,
 				label: "班级",
 			},
@@ -29,6 +30,7 @@ EasyTable.init()
 			{
 				able: true,
 				mode: classMode,
+				sort: true,
 				label: "班级",
 			},
 			{ able: true, mode: "[]", label: "姓名" },
