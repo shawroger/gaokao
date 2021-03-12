@@ -29,8 +29,8 @@ const el = Matable.init({
 	})
 	.add({
 		index: true,
-		data: "./store/2019.csv",
-		title: "2019 高考录取查询",
+		data: "./store/2019-1.csv",
+		title: "2019 一分部高考录取查询",
 		index: true,
 		config: [
 			{ able: false, mode: null, label: "序号" },
@@ -51,8 +51,8 @@ const el = Matable.init({
 	})
 	.add({
 		index: true,
-		data: "./store/2019@.csv",
-		title: "2019 高考录取查询 · 二分部",
+		data: "./store/2019-2.csv",
+		title: "2019 二分部高考录取查询 ",
 		footer: true,
 		config: [
 			{
@@ -109,8 +109,8 @@ const el = Matable.init({
 		],
 	})
 	.add({
-		data: "./store/2018@.csv",
-		title: "2018 高考理科成绩查询",
+		data: "./store/2018-detail.csv",
+		title: "2018 高考理科明细成绩查询",
 		footer: true,
 		config: [
 			{ able: true, mode: "[?]", label: "姓名" },
