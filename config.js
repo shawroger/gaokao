@@ -1,18 +1,5 @@
-const classMode = Array(16)
-	.fill(0)
-	.map((_, i) => ({
-		key: i + 1 + "班",
-		val: i + 1,
-	}));
-
 const el = Matable.init({
 	title: "宁国中学高考查询",
-	countdown: [
-		{
-			name: "2021 高考倒计时",
-			date: "2021-06-07 09:00:00",
-		},
-	],
 })
 	.add({
 		index: false,
@@ -20,11 +7,15 @@ const el = Matable.init({
 		title: "2020 高考录取查询",
 		index: false,
 		config: [
-			{ able: false, mode: null, label: "序号" },
 			{
 				able: true,
 				sort: true,
-				mode: classMode,
+				mode: Array(16)
+					.fill(0)
+					.map((_, i) => ({
+						key: i + 1 + "班",
+						val: i + 1,
+					})),
 				label: "班级",
 			},
 			{ able: true, mode: "[?]", label: "姓名" },
@@ -46,7 +37,12 @@ const el = Matable.init({
 			{
 				able: true,
 				sort: true,
-				mode: classMode,
+				mode: Array(16)
+					.fill(0)
+					.map((_, i) => ({
+						key: i + 1 + "班",
+						val: i + 1,
+					})),
 				label: "班级",
 			},
 			{ able: true, mode: "[?]", label: "姓名" },
@@ -99,7 +95,12 @@ const el = Matable.init({
 		config: [
 			{
 				able: true,
-				mode: classMode,
+				mode: Array(16)
+					.fill(0)
+					.map((_, i) => ({
+						key: i + 1 + "班",
+						val: i + 1,
+					})),
 				sort: true,
 				label: "班级",
 			},
