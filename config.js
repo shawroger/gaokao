@@ -5,21 +5,21 @@ const classMode = Array(16)
 		val: i + 1,
 	}));
 
-Matable.init({
+const el = Matable.init({
 	title: "宁国中学高考查询",
-	countdown: [{
-		name: "2021 高考倒计时",
-		date: "2021-06-07 09:00:00"
-	}]
+	countdown: [
+		{
+			name: "2021 高考倒计时",
+			date: "2021-06-07 09:00:00",
+		},
+	],
 })
 	.add({
 		index: false,
 		data: "./store/2020.csv",
 		title: "2020 高考录取查询",
 		index: false,
-		config: [
-			{ able: true, mode: null, label: "公告" },
-		],
+		config: [{ able: true, mode: null, label: "公告" }],
 	})
 	.add({
 		index: true,
@@ -40,6 +40,45 @@ Matable.init({
 	})
 	.add({
 		index: true,
+		data: "./store/2019@.csv",
+		title: "2019 高考录取查询 · 二分部",
+		footer: true,
+		config: [
+			{ able: false, mode: null, label: "序号" },
+			{
+				able: true,
+				sort: true,
+				mode: [
+					"文1",
+					"文2",
+					"文3",
+					"文4",
+					"文5",
+					"文6",
+					"文7",
+					"文8",
+					"理1",
+					"理2",
+					"理3",
+				],
+				label: "班级",
+			},
+			{ able: true, mode: "[?]", label: "姓名" },
+			{ able: true, mode: "[?]", label: "学校" },
+			{
+				able: true,
+				mode: ["985", "211", "一本", "艺术类名校", "无"],
+				label: "说明",
+			},
+			{
+				able: true,
+				mode: ["应届", "无"],
+				label: "备注",
+			},
+		],
+	})
+	.add({
+		index: true,
 		data: "./store/2018.csv",
 		title: "2018 高考录取查询",
 		footer: true,
@@ -55,7 +94,7 @@ Matable.init({
 		],
 	})
 	.add({
-		data: "./store/2018-.csv",
+		data: "./store/2018@.csv",
 		title: "2018 高考理科成绩查询",
 		footer: true,
 		config: [
