@@ -19,7 +19,22 @@ const el = Matable.init({
 		data: "./store/2020.csv",
 		title: "2020 高考录取查询",
 		index: false,
-		config: [{ able: true, mode: null, label: "公告" }],
+		config: [
+			{ able: false, mode: null, label: "序号" },
+			{
+				able: true,
+				sort: true,
+				mode: classMode,
+				label: "班级",
+			},
+			{ able: true, mode: "[?]", label: "姓名" },
+			{ able: true, mode: "[?]", label: "学校" },
+			{
+				able: true,
+				mode: ["C9", "985", "211", "本科"],
+				label: "备注",
+			},
+		],
 	})
 	.add({
 		index: true,
@@ -44,11 +59,13 @@ const el = Matable.init({
 		title: "2019 高考录取查询 · 二分部",
 		footer: true,
 		config: [
-			{ able: false, mode: null, label: "序号" },
 			{
 				able: true,
 				sort: true,
 				mode: [
+					"理1",
+					"理2",
+					"理3",
 					"文1",
 					"文2",
 					"文3",
@@ -57,9 +74,6 @@ const el = Matable.init({
 					"文6",
 					"文7",
 					"文8",
-					"理1",
-					"理2",
-					"理3",
 				],
 				label: "班级",
 			},
