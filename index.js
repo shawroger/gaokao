@@ -116,7 +116,7 @@ const matable = Matable.init({
 				{ able: true, mode: null, sort: true, label: "语文" },
 				{ able: true, mode: null, sort: true, label: "数学" },
 				{ able: true, mode: null, sort: true, label: "英语" },
-				{ able: true, mode: null, sort: true, label: "综合" },
+				{ able: true, mode: null, sort: true, label: "理综" },
 			],
 		},
 	])
