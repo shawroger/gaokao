@@ -1,8 +1,7 @@
 {
 	"name": "gaokao",
 	"private": true,
-	"version": "1.0.1",
-	"main": "index.js",
+	"version": "0.0.2",
 	"homepage": "http://shawroger.gitee.io/gaokao/",
 	"scripts": {
 		"publish": "node scripts/publish.js",
@@ -11,9 +10,12 @@
 	"config": {
 		"port": 5000
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"keywords": [
+		"vue",
+		"data"
+	],
+	"author": "shawroger",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://gitee.com/shawroger/gaokao.git"
