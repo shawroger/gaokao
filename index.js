@@ -1,5 +1,5 @@
 const matable = Matable.init({
-	title: "宁国中学高考查询",
+	title: "宁国中学高考数据查询",
 	copyright: true,
 })
 	.config([
@@ -23,7 +23,7 @@ const matable = Matable.init({
 				{ able: true, mode: "[?]", label: "学校" },
 				{
 					able: true,
-					mode: ["C9", "985", "211", "本科"],
+					mode: ["C9", "985", "211", "一本", "本科"],
 					label: "备注",
 				},
 			],
@@ -31,7 +31,7 @@ const matable = Matable.init({
 		{
 			index: true,
 			data: "./store/2019@part1.csv",
-			title: "二〇一九 一分部高考录取结果",
+			title: "二〇一九 高考录取结果 · 一分部",
 			index: true,
 			config: [
 				{ able: false, mode: null, label: "序号" },
@@ -53,7 +53,7 @@ const matable = Matable.init({
 		{
 			index: true,
 			data: "./store/2019@part2.csv",
-			title: "二〇一九 二分部高考录取结果",
+			title: "二〇一九 高考录取结果 · 二分部",
 			config: [
 				{
 					able: true,
