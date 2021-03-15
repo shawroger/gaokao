@@ -4,7 +4,7 @@
 
 # 网页展示
 
-网页渲染使用了[matable](https://gitee.com/shawroger/matable)框架。
+网页渲染使用了 [matable](https://gitee.com/shawroger/matable) 框架。
 
 配置文件在`index.js`文件内，具体配置可查看该框架的说明文件。
 
