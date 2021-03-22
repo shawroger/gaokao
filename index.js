@@ -3,6 +3,7 @@ const config = [
 		index: true,
 		data: "./assets/_data/2020.csv",
 		title: "二〇二〇 高考录取结果",
+		removeFirstLine: true,
 		config: [
 			{
 				able: true,
@@ -28,6 +29,7 @@ const config = [
 		index: true,
 		data: "./assets/_data/2019@part1.csv",
 		title: "二〇一九 高考录取结果 · 一分部",
+		removeFirstLine: true,
 		index: true,
 		config: [
 			{ able: false, mode: null, label: "序号" },
@@ -50,6 +52,7 @@ const config = [
 		index: true,
 		data: "./assets/_data/2019@part2.csv",
 		title: "二〇一九 高考录取结果 · 二分部",
+		removeFirstLine: true,
 		config: [
 			{
 				able: true,
@@ -87,6 +90,7 @@ const config = [
 		index: true,
 		data: "./assets/_data/2018.csv",
 		title: "二〇一八 高考录取结果",
+		removeFirstLine: true,
 		config: [
 			{
 				able: true,
@@ -106,6 +110,7 @@ const config = [
 	{
 		data: "./assets/_data/2018@score.csv",
 		title: "二〇一八 高考单科成绩单",
+		removeFirstLine: true,
 		config: [
 			{ able: true, mode: "[?]", label: "姓名" },
 			{ able: true, mode: null, sort: true, label: "总分" },
