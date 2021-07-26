@@ -1,0 +1,3 @@
+fst deploy.fs
+
+pause

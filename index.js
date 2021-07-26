@@ -1,7 +1,48 @@
+const allClass = Array(16).fill(0).map((_, i) => ({
+	val: i + 1,
+	key: i + 1 + "班",
+}));
+
+const assets = (file) => "./assets/_data/" + file;
+
+
 const config = [
 	{
 		index: true,
-		data: "./assets/_data/2020.csv",
+		data: assets("2021.csv"),
+		title: "二〇二一 高考录取结果",
+		removeFirstLine: true,
+		config: [
+			{ able: true, mode: "[?]", label: "姓名" },
+			{
+				able: true,
+				sort: true,
+				label: "班级",
+				mode: allClass,
+			},
+			{
+				able: true,
+				label: "科类",
+				mode: ["理科", "文科"],
+			},
+			{ able: true, mode: null, sort: true, label: "总分" },
+			{ able: true, mode: "[?]", label: "学校" },
+			{ able: true, mode: "[?]", label: "专业" },
+			{
+				able: true,
+				label: "备注",
+				mode: ["", "复读"],
+			},
+			{
+				able: true,
+				label: "层次",
+				mode: ["985", "211", "一本", "本科"],
+			},
+		],
+	},
+	{
+		index: true,
+		data: assets("2020.csv"),
 		title: "二〇二〇 高考录取结果",
 		removeFirstLine: true,
 		config: [
@@ -9,12 +50,7 @@ const config = [
 				able: true,
 				sort: true,
 				label: "班级",
-				mode: Array(16)
-					.fill(0)
-					.map((_, i) => ({
-						key: i + 1 + "班",
-						val: i + 1,
-					})),
+				mode: allClass,
 			},
 			{ able: true, mode: "[?]", label: "姓名" },
 			{ able: true, mode: "[?]", label: "学校" },
@@ -27,7 +63,7 @@ const config = [
 	},
 	{
 		index: true,
-		data: "./assets/_data/2019@part1.csv",
+		data: assets("2019@part1.csv"),
 		title: "二〇一九 高考录取结果 · 一分部",
 		removeFirstLine: true,
 		index: true,
@@ -37,12 +73,7 @@ const config = [
 				able: true,
 				sort: true,
 				label: "班级",
-				mode: Array(16)
-					.fill(0)
-					.map((_, i) => ({
-						key: i + 1 + "班",
-						val: i + 1,
-					})),
+				mode: allClass,
 			},
 			{ able: true, mode: "[?]", label: "姓名" },
 			{ able: true, mode: "[?]", label: "学校" },
@@ -50,7 +81,7 @@ const config = [
 	},
 	{
 		index: true,
-		data: "./assets/_data/2019@part2.csv",
+		data: assets("2019@part2.csv"),
 		title: "二〇一九 高考录取结果 · 二分部",
 		removeFirstLine: true,
 		config: [
@@ -88,7 +119,7 @@ const config = [
 	},
 	{
 		index: true,
-		data: "./assets/_data/2018.csv",
+		data: assets("2018.csv"),
 		title: "二〇一八 高考录取结果",
 		removeFirstLine: true,
 		config: [
@@ -96,19 +127,14 @@ const config = [
 				able: true,
 				sort: true,
 				label: "班级",
-				mode: Array(16)
-					.fill(0)
-					.map((_, i) => ({
-						key: i + 1 + "班",
-						val: i + 1,
-					})),
+				mode: allClass,
 			},
 			{ able: true, mode: "[?]", label: "姓名" },
 			{ able: true, mode: "[?]", label: "学校" },
 		],
 	},
 	{
-		data: "./assets/_data/2018@score.csv",
+		data: assets("2018@score.csv"),
 		title: "二〇一八 高考单科成绩单",
 		removeFirstLine: true,
 		config: [
@@ -126,8 +152,8 @@ const matable = Matable.init({
 	copyright: true,
 	title: "宁国中学高考数据查询",
 	countdown: {
-		name: "二〇二一 高考倒计时",
-		date: "2021-06-07 09:00:00",
+		name: "二〇二二 高考倒计时",
+		date: "2022-06-07 09:00:00",
 	},
 })
 	.config(config)
