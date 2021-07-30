@@ -1,11 +1,10 @@
 {
 	"name": "gaokao",
 	"private": true,
-	"version": "0.0.2",
 	"homepage": "http://shawroger.gitee.io/gaokao/",
 	"scripts": {
-		"publish": "node scripts/publish.js",
-		"serve": "node scripts/serve.js"
+		"deploy": "zx shell/deploy.mjs",
+		"serve": "miniserve"
 	},
 	"config": {
 		"port": 5000
@@ -19,10 +18,5 @@
 	"repository": {
 		"type": "git",
 		"url": "https://gitee.com/shawroger/gaokao.git"
-	},
-	"devDependencies": {
-		"enquirer": "^2.3.6",
-		"execa": "^5.0.0",
-		"st": "^2.0.0"
 	}
 }
