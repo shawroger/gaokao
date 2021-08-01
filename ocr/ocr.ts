@@ -74,8 +74,8 @@ function queryFile(id: string) {
 
 				if (
 					res["result"] &&
-					res["result"]["ret_msg"] === "已完成" &&
-					res["result"]["result_data"]
+					res["result"]["result_data"] &&
+					res["result"]["ret_msg"] === "已完成"
 				) {
 					const file = res["result"]["result_data"];
 					console.log("文件下载地址：" + file + "即将自动下载");

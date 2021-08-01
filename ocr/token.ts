@@ -31,9 +31,9 @@ export function getToken() {
 	fse.ensureFileSync(tokenFile);
 	const data = fse.readFileSync(tokenFile).toString();
 
-	if (data) {
+	if (data.length > 0) {
 		return data;
+	} else {
+		return null;
 	}
-
-	return null;
 }
