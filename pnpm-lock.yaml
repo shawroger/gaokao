@@ -4,10 +4,12 @@ specifiers:
   '@types/fs-extra': ^9.0.12
   '@types/node': ^16.4.8
   '@types/request': ^2.48.7
+  atomic-sleep: ^1.0.0
   fs-extra: ^10.0.0
   request: ^2.88.2
 
 dependencies:
+  atomic-sleep: 1.0.0
   fs-extra: 10.0.0
   request: 2.88.2
 
@@ -67,6 +69,11 @@ packages:
 
   /asynckit/0.4.0:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
+
+  /atomic-sleep/1.0.0:
+    resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /aws-sign2/0.7.0:
     resolution: {integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=}
