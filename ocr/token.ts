@@ -5,7 +5,7 @@ import request from "request";
 
 import { API_KEY, SECRET_KEY } from "./secret";
 
-const dir = path.resolve(__dirname, "./image");
+export const dir = path.resolve(__dirname, "./temp");
 const tokenFile = dir + "/token.txt";
 
 const URL = "https://aip.baidubce.com/oauth/2.0/token?";
@@ -29,10 +29,10 @@ requestToken((error, response, body) => {
 
 export function getToken() {
 	fse.ensureFileSync(tokenFile);
-	const data = JSON.parse(fse.readJSONSync(tokenFile));
+	const data = fse.readFileSync(tokenFile).toString();
 
-	if (data && data["access_token"]) {
-		return data["access_token"];
+	if (data) {
+		return data;
 	}
 
 	return null;
