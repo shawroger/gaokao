@@ -10360,7 +10360,9 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "init", function() { return /* reexport */ init; });
-__webpack_require__.d(__webpack_exports__, "Helper", function() { return /* reexport */ helper_Helper; });
+__webpack_require__.d(__webpack_exports__, "createMode", function() { return /* reexport */ createMode; });
+__webpack_require__.d(__webpack_exports__, "createConf", function() { return /* reexport */ createConf; });
+__webpack_require__.d(__webpack_exports__, "createSelection", function() { return /* reexport */ createSelection; });
 
 // CONCATENATED MODULE: ./node_modules/.pnpm/@vue+cli-service@4.4.6_559daba3497a876383561af73426cb00/node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -15520,11 +15522,11 @@ var router_routes = [{
     hide: true
   }
 }];
-// EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.index-of.js
-var es_array_index_of = __webpack_require__("2d78");
-
 // EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.fill.js
 var es_array_fill = __webpack_require__("d8e6");
+
+// EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.index-of.js
+var es_array_index_of = __webpack_require__("2d78");
 
 // CONCATENATED MODULE: ./src/utils/helper.ts
 
@@ -15535,16 +15537,6 @@ var es_array_fill = __webpack_require__("d8e6");
 
 
 
-
-var provideConfig = function provideConfig(name, config) {
-  return {
-    config: config,
-    index: true,
-    removeFirstLine: true,
-    data: "./@data/" + name,
-    title: name.slice(0, name.indexOf("."))
-  };
-};
 var SearchMode;
 
 (function (SearchMode) {
@@ -15556,165 +15548,165 @@ var SearchMode;
   SearchMode[SearchMode["SortSelect"] = 5] = "SortSelect";
 })(SearchMode || (SearchMode = {}));
 
-var helper_Helper = /*#__PURE__*/function () {
-  function Helper() {
-    var baseDir = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+function createSelection(fromTo) {
+  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (n) {
+    return {
+      weight: n,
+      key: String(n),
+      val: String(n)
+    };
+  };
+  var _cb = cb;
 
-    _classCallCheck(this, Helper);
-
-    this.baseDir = baseDir;
-    this.searchMode = SearchMode;
+  if (typeof cb(0) === "string") {
+    _cb = function _cb(n) {
+      return {
+        weight: n,
+        key: cb(n),
+        val: String(n)
+      };
+    };
   }
 
-  _createClass(Helper, [{
-    key: "conf",
-    value: function conf(data, config) {
-      return {
-        config: config,
-        index: true,
-        data: this.baseDir + data,
-        title: data.slice(0, data.indexOf("."))
-      };
-    }
-  }, {
-    key: "mode",
-    value: function mode(searchMode, op) {
-      var _op$label, _op$mode;
+  return Array(fromTo[1] - fromTo[0]).fill(0).map(function (_, i) {
+    return i + fromTo[0];
+  }).map(function (v) {
+    return _cb(v);
+  });
+}
+function createMode(row) {
+  var conf = [];
+  var labels = Object.keys(row);
+  var values = Object.values(row);
 
-      var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
-      var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
+  function $$(searchMode, op) {
+    var _op$label, _op$mode;
 
-      switch (searchMode) {
-        case SearchMode.None:
-          return {
-            able: false,
-            mode: null,
-            sort: true,
-            label: label
-          };
+    var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
+    var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
 
-        case SearchMode.FullMatch:
-          return {
-            able: true,
-            mode: "[=]",
-            label: label
-          };
-
-        case SearchMode.PartialMatch:
-          return {
-            able: true,
-            mode: "[?]",
-            label: label
-          };
-
-        case SearchMode.Sort:
-          return {
-            able: true,
-            mode: null,
-            sort: true,
-            label: label
-          };
-
-        case SearchMode.Select:
-          return {
-            able: true,
-            label: label,
-            mode: mode
-          };
-
-        case SearchMode.SortSelect:
-          return {
-            able: true,
-            sort: true,
-            label: label,
-            mode: mode
-          };
-      }
-    }
-  }, {
-    key: "select",
-    value: function select(fromTo) {
-      var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (n) {
+    switch (searchMode) {
+      case SearchMode.None:
         return {
-          weight: n,
-          key: String(n),
-          val: String(n)
+          able: false,
+          mode: null,
+          sort: true,
+          label: label
         };
-      };
-      var _cb = cb;
 
-      if (typeof cb(0) === "string") {
-        _cb = function _cb(n) {
-          return {
-            weight: n,
-            key: cb(n),
-            val: String(n)
-          };
+      case SearchMode.FullMatch:
+        return {
+          able: true,
+          mode: "[=]",
+          label: label
         };
-      }
 
-      return Array(fromTo[1] - fromTo[0]).fill(0).map(function (_, i) {
-        return i + fromTo[0];
-      }).map(function (v) {
-        return _cb(v);
+      case SearchMode.PartialMatch:
+        return {
+          able: true,
+          mode: "[?]",
+          label: label
+        };
+
+      case SearchMode.Sort:
+        return {
+          able: true,
+          mode: null,
+          sort: true,
+          label: label
+        };
+
+      case SearchMode.Select:
+        return {
+          able: true,
+          label: label,
+          mode: mode
+        };
+
+      case SearchMode.SortSelect:
+        return {
+          able: true,
+          sort: true,
+          label: label,
+          mode: mode
+        };
+    }
+  }
+
+  for (var i = 0; i < labels.length; i++) {
+    if (values[i] === null) {
+      var m = $$(SearchMode.None, {
+        label: labels[i]
       });
-    }
-  }, {
-    key: "parseMode",
-    value: function parseMode(row) {
-      var conf = [];
-      var labels = Object.keys(row);
-      var values = Object.values(row);
+      conf.push(m);
+    } else if (typeof values[i] === "string") {
+      var _m = $$(values[i] === "==" ? SearchMode.FullMatch : SearchMode.PartialMatch, {
+        label: labels[i]
+      });
 
-      for (var i = 0; i < labels.length; i++) {
-        if (values[i] === null) {
-          var mode = this.mode(SearchMode.None, {
-            label: labels[i]
-          });
-          conf.push(mode);
-        } else if (typeof values[i] === "string") {
-          var _mode = this.mode(values[i] === "==" ? SearchMode.FullMatch : SearchMode.PartialMatch, {
-            label: labels[i]
-          });
+      conf.push(_m);
+    } else if (typeof values[i] === "number") {
+      var _m2 = $$(SearchMode.Sort, {
+        label: labels[i]
+      });
 
-          conf.push(_mode);
-        } else if (typeof values[i] === "number") {
-          var _mode2 = this.mode(SearchMode.Sort, {
-            label: labels[i]
-          });
+      conf.push(_m2);
+    } else if (Array.isArray(values[i])) {
+      if (typeof values[i][0] === "string") {
+        var _m3 = $$(SearchMode.Select, {
+          label: labels[i],
+          mode: values[i]
+        });
 
-          conf.push(_mode2);
-        } else if (Array.isArray(values[i])) {
-          if (typeof values[i][0] === "string") {
-            var _mode3 = this.mode(SearchMode.Select, {
-              label: labels[i],
-              mode: values[i]
-            });
+        conf.push(_m3);
+      } else if (values[i][0]["key"] && values[i][0]["val"] && values[i][0]["weight"]) {
+        var _m4 = $$(SearchMode.SortSelect, {
+          label: labels[i],
+          mode: values[i]
+        });
 
-            conf.push(_mode3);
-          } else if (values[i][0]["key"] && values[i][0]["val"] && values[i][0]["weight"]) {
-            var _mode4 = this.mode(SearchMode.SortSelect, {
-              label: labels[i],
-              mode: values[i]
-            });
-
-            conf.push(_mode4);
-          }
-        }
+        conf.push(_m4);
       }
-
-      return conf;
     }
-  }, {
-    key: "parse",
-    value: function parse(data, row) {
-      var config = this.parseMode(row);
-      return this.conf(data, config);
-    }
-  }]);
+  }
 
-  return Helper;
-}();
+  return conf;
+}
+function createConf(info, row) {
+  function conf(info, config) {
+    var data = "";
+    var title = "";
+
+    if (typeof info === "string") {
+      data = info;
+      title = data.slice(0, data.indexOf("."));
+    } else {
+      data = info[0];
+      title = info[1];
+    }
+
+    return {
+      data: data,
+      title: title,
+      config: config,
+      index: true
+    };
+  }
+
+  var config = createMode(row);
+  var res = conf(info, config);
+
+  if (typeof info !== "string" && !Array.isArray(info) && Object.prototype.toString.call(info) === "[object Object]") {
+    var keys = Object.keys(info);
+    var vals = Object.values(info);
+
+    for (var i = 0; i < keys.length; i++) {
+      res[keys[i]] = vals[i];
+    }
+  }
+
+  return res;
+}
 // EXTERNAL MODULE: ./package.json
 var package_0 = __webpack_require__("9224");
 

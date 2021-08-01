@@ -1,8 +1,12 @@
-const h = new Matable.Helper("./@data/");
+const { createConf, createSelection } = Matable;
 
-const 班级 = h.select([1, 17], (i) => i + " 班");
+function h(a, ...b) {
+	return createConf(["./@data/" + a[0], a[1]], ...b);
+}
 
-const d2021 = h.parse("2021高考录取结果.xlsx", {
+const 班级 = createSelection([1, 17], (i) => i + " 班");
+
+const d2021 = h(["2021.xlsx", "2021高考录取结果"], {
 	姓名: "",
 	班级,
 	科类: ["理科", "文科"],
@@ -13,20 +17,20 @@ const d2021 = h.parse("2021高考录取结果.xlsx", {
 	层次: ["985", "211", "一本", "本科"],
 });
 
-const d2020 = h.parse("2020高考录取结果.xlsx", {
+const d2020 = h(["2020.xlsx", "2020高考录取结果"], {
 	姓名: "",
 	班级,
 	学校: "",
 	层次: ["C9", "985", "211", "一本", "本科"],
 });
 
-const d2019_1 = h.parse("2019一分部高考录取结果.xlsx", {
+const d2019_1 = h(["2019_1.xlsx", "2019一分部高考录取结果"], {
 	姓名: "",
 	班级,
 	学校: "",
 });
 
-const d2019_2 = h.parse("2019二分部高考录取结果.xlsx", {
+const d2019_2 = h(["2019_2.xlsx", "2019二分部高考录取结果"], {
 	姓名: "",
 	班级: [
 		"理1",
@@ -46,13 +50,13 @@ const d2019_2 = h.parse("2019二分部高考录取结果.xlsx", {
 	应届: ["是", "否"],
 });
 
-const d2018 = h.parse("2018高考录取结果.xlsx", {
+const d2018 = h(["2018.xlsx", "2018高考录取结果"], {
 	姓名: "",
 	班级,
 	学校: "",
 });
 
-const d2018_s = h.parse("2018科目成绩详情.xlsx", {
+const d2018_s = h(["2018_s.xlsx", "2018科目成绩详情"], {
 	姓名: "",
 	总分: 0,
 	语文: 0,
