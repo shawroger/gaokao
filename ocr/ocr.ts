@@ -11,7 +11,7 @@ if (token === null) {
 	throw new Error("token not found \n try run `npm run token` first");
 }
 
-const image = Buffer.from(fse.readFileSync(dir + "\\0.jpg")).toString("base64");
+const image = Buffer.from(fse.readFileSync(dir + "\\0.png")).toString("base64");
 
 let queryTimes = 1;
 

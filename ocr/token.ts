@@ -23,7 +23,8 @@ export function requestToken(cb: request.RequestCallback) {
 requestToken((error, response, body) => {
 	if (!error) {
 		fse.ensureFileSync(tokenFile);
-		fse.writeJSONSync(tokenFile, body);
+		const data = JSON.parse(body); 
+		fse.writeJSONSync(tokenFile, data["access_token"]);
 	}
 });
 
@@ -31,7 +32,7 @@ export function getToken() {
 	fse.ensureFileSync(tokenFile);
 	const data = fse.readFileSync(tokenFile).toString();
 
-	if (data.length > 0) {
+	if (data) {
 		return data;
 	} else {
 		return null;

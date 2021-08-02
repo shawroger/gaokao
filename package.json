@@ -3,10 +3,11 @@
 	"private": true,
 	"homepage": "http://shawroger.gitee.io/gaokao/",
 	"scripts": {
-		"deploy": "zx shell/deploy.mjs",
+		"deploy": "rimraf ocr/*.js && zx shell/deploy.mjs",
 		"serve": "miniserve",
-		"ocr": "esm-ts-node ocr/ocr.ts",
-		"token": "esm-ts-node ocr/token.ts"
+		"start": "rimraf ocr/*.js && tsc",
+		"ocr": "npm start && node ocr/ocr.js && rimraf ocr/*.js",
+		"token": "npm start && node ocr/token.js && rimraf ocr/*.js"
 	},
 	"config": {
 		"port": 5000
@@ -24,7 +25,8 @@
 	"dependencies": {
 		"atomic-sleep": "^1.0.0",
 		"fs-extra": "^10.0.0",
-		"request": "^2.88.2"
+		"request": "^2.88.2",
+		"tslib": "^2.3.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.12",
