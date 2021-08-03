@@ -3,11 +3,10 @@
 	"private": true,
 	"homepage": "http://shawroger.gitee.io/gaokao/",
 	"scripts": {
-		"deploy": "rimraf ocr/*.js && zx shell/deploy.mjs",
+		"deploy": "zx shell/deploy.mjs",
 		"serve": "miniserve",
-		"start": "rimraf ocr/*.js && tsc",
-		"ocr": "npm start && node ocr/ocr.js && rimraf ocr/*.js",
-		"token": "npm start && node ocr/token.js && rimraf ocr/*.js"
+		"ocr": "ts-node ocr/ocr.ts",
+		"token": "ts-node ocr/token.ts"
 	},
 	"config": {
 		"port": 5000

@@ -20,10 +20,10 @@ export function requestToken(cb: request.RequestCallback) {
 	request(URL + param, cb);
 }
 
-requestToken((error, response, body) => {
+requestToken((error, _response, body) => {
 	if (!error) {
 		fse.ensureFileSync(tokenFile);
-		const data = JSON.parse(body); 
+		const data = JSON.parse(body);
 		fse.writeJSONSync(tokenFile, data["access_token"]);
 	}
 });

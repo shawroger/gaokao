@@ -1,29 +1,19 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "strict": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "lib": [
-      "esnext"
-    ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "shell/**/*.ts",
-    "ocr/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "commonjs",
+		"strict": true,
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": false,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"lib": ["esnext"]
+	},
+	"include": ["src/**/*.ts", "shell/**/*.ts", "ocr/**/*.ts"],
+	"exclude": ["node_modules"]
 }

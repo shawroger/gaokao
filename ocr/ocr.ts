@@ -1,7 +1,6 @@
-/// <reference path="declare.d.ts" />
-
 import fse from "fs-extra";
 import request from "request";
+//@ts-ignore
 import sleep from "atomic-sleep";
 import { dir, getToken } from "./token";
 
@@ -11,7 +10,7 @@ if (token === null) {
 	throw new Error("token not found \n try run `npm run token` first");
 }
 
-const image = Buffer.from(fse.readFileSync(dir + "\\0.png")).toString("base64");
+const image = Buffer.from(fse.readFileSync(dir + "\\0.jpg")).toString("base64");
 
 let queryTimes = 1;
 
