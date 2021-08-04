@@ -1,5 +1,5 @@
 node_modules
 ocr/secret.ts
-ocr/image
+ocr/token.txt
 ocr/temp
 .vscode

@@ -3,7 +3,7 @@
 	"private": true,
 	"homepage": "http://shawroger.gitee.io/gaokao/",
 	"scripts": {
-		"deploy": "zx shell/deploy.mjs",
+		"deploy": "rimraf ocr/temp && zx shell/deploy.mjs",
 		"serve": "miniserve",
 		"ocr": "ts-node ocr/ocr.ts",
 		"token": "ts-node ocr/token.ts"

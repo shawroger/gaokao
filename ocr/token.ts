@@ -6,7 +6,7 @@ import request from "request";
 import { API_KEY, SECRET_KEY } from "./secret";
 
 export const dir = path.resolve(__dirname, "./temp");
-const tokenFile = dir + "/token.txt";
+const tokenFile = path.resolve(__dirname, "./token.txt");
 
 const URL = "https://aip.baidubce.com/oauth/2.0/token?";
 
