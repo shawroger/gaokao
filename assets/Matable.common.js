@@ -11269,7 +11269,11 @@ var defaultState = {
   removeFirstLine: true,
   onLoadData: function onLoadData() {},
   onSortData: function onSortData() {},
-  onChangePage: function onChangePage() {}
+  onChangePage: function onChangePage() {},
+  injectJson: function injectJson() {
+    return {};
+  },
+  meta: {}
 };
 function mergeConfigItem(config) {
   /**
@@ -14647,8 +14651,8 @@ var homevue_type_template_id_bec8b4ac_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/views/home.vue?vue&type=template&id=bec8b4ac&
 
-// CONCATENATED MODULE: ./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69dc511b-vue-loader-template"}!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib??vue-loader-options!./src/components/display.vue?vue&type=template&id=5558814d&
-var displayvue_type_template_id_5558814d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mt-display"},[_c('mu-container',{class:{
+// CONCATENATED MODULE: ./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69dc511b-vue-loader-template"}!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib??vue-loader-options!./src/components/display.vue?vue&type=template&id=d7aaa3b4&
+var displayvue_type_template_id_d7aaa3b4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"mt-display"},[_c('mu-container',{class:{
 			tableFlexBindClassContainerL1: _vm.tableFlexBindClass > 0,
 		}},[_c('mu-card',{class:{ tableFlexBindClass: _vm.tableFlexBindClass > 0 },attrs:{"raised":false}},[_c('mu-scale-transition',[(!_vm.isSearch)?_c('mu-card-title',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isSearch),expression:"!isSearch"}],attrs:{"title":_vm.currentConfig.title}}):_vm._e()],1),_c('mu-expansion-panel',{attrs:{"expand":_vm.isSearch},on:{"change":function($event){_vm.isSearch = !_vm.isSearch}}},[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v(" "+_vm._s(_vm.isSearch ? _vm.currentConfig.title : "使用检索")+" ")]),_c('mu-scale-transition',[_c('div',{staticClass:"search-cols"},[_vm._l((_vm.searchMode),function(item){return [(item.isText)?_c('mu-text-field',{key:item.name,attrs:{"placeholder":'在' +
 									item.name +
@@ -14657,10 +14661,10 @@ var displayvue_type_template_id_5558814d_render = function () {var _vm=this;var 
 								_vm.page * _vm.pageDivide - _vm.pageDivide,
 								_vm.page * _vm.pageDivide
 							),"sort":_vm.sortTemp},on:{"update:sort":function($event){_vm.sortTemp=$event},"sort-change":_vm.sortData},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [(_vm.currentConfig.index)?_c('td',{staticClass:"is-center"},[_vm._v(" "+_vm._s(scope.$index + _vm.page * _vm.pageDivide - _vm.pageDivide + 1)+" ")]):_vm._e(),_vm._l((_vm.labelList),function(item){return _c('td',{key:item,staticClass:"is-center"},[_vm._v(" "+_vm._s(scope.row[item])+" ")])})]}}],null,false,2198391115)}),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.pageCount > 1),expression:"pageCount > 1"}],staticClass:"page-slider"},[_c('mu-slider',{attrs:{"step":1,"min":1,"max":_vm.pageCount},model:{value:(_vm.page),callback:function ($$v) {_vm.page=$$v},expression:"page"}})],1),_c('mu-card-actions',{directives:[{name:"show",rawName:"v-show",value:(_vm.pageCount > 1),expression:"pageCount > 1"}]},[_c('mu-button',{attrs:{"flat":"","disabled":_vm.page <= 1},on:{"click":function($event){_vm.page = _vm.page - 1}}},[_c('mu-icon',{attrs:{"value":"arrow_back"}})],1),_c('p',[_vm._v(_vm._s(_vm.page)+" / "+_vm._s(_vm.pageCount))]),_c('mu-button',{attrs:{"flat":"","disabled":_vm.page >= _vm.pageCount},on:{"click":function($event){_vm.page = _vm.page + 1}}},[_c('mu-icon',{attrs:{"value":"arrow_forward"}})],1)],1)],1):_vm._e()])],1)],1)],1)}
-var displayvue_type_template_id_5558814d_staticRenderFns = []
+var displayvue_type_template_id_d7aaa3b4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/display.vue?vue&type=template&id=5558814d&
+// CONCATENATED MODULE: ./src/components/display.vue?vue&type=template&id=d7aaa3b4&
 
 // CONCATENATED MODULE: ./node_modules/.pnpm/@babel+runtime@7.14.8/node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js
 
@@ -14886,246 +14890,298 @@ var Upload = (function () {
 
 
 //# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./src/utils/table.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function useTable(ctx) {
+  var page = Object(vue_composition_api_umd["ref"])(1);
+  var isSearch = Object(vue_composition_api_umd["ref"])(false);
+  var pageDivide = Object(vue_composition_api_umd["ref"])(10);
+  var tableDisplayFlexList = Object(vue_composition_api_umd["ref"])(["表格固宽盒内显示", "表格全宽屏内显示"]);
+  var tableDisplayFlex = Object(vue_composition_api_umd["computed"])({
+    get: function get() {
+      var flex = ctx.root.$store.state.globalConfig.tableFullWidth;
+      return flex ? tableDisplayFlexList.value[1] : tableDisplayFlexList.value[0];
+    },
+    set: function set(val) {
+      if (val === tableDisplayFlexList.value[0]) {
+        ctx.root.$store.commit("setTableFullWidth", false);
+        window.localStorage.setItem(STORAGE_KEY.TABLE_FULLWIDTH, "0");
+      } else if (val === tableDisplayFlexList.value[1]) {
+        ctx.root.$store.commit("setTableFullWidth", true);
+        window.localStorage.setItem(STORAGE_KEY.TABLE_FULLWIDTH, "1");
+      }
+
+      return val;
+    }
+  });
+  var tableFlexBindClass = Object(vue_composition_api_umd["computed"])(function () {
+    for (var i = 0; i < tableDisplayFlexList.value.length; i++) {
+      if (tableDisplayFlexList.value[i] === tableDisplayFlex.value) {
+        return i;
+      }
+    }
+
+    return 0;
+  });
+  var downloadOps = Object(vue_composition_api_umd["ref"])(["下载源文件", "下载当前展示数据（无缩进）", "下载当前展示数据（有缩进）", "下载当前所有数据（无缩进）", "下载当前所有数据（有缩进）", ""]);
+  var downloadOp = Object(vue_composition_api_umd["ref"])(downloadOps.value[0]);
+  var pageCount = Object(vue_composition_api_umd["computed"])(function () {
+    return Math.ceil(pageData.value.length / pageDivide.value) > 0 && pageDivide.value > 0 ? Math.ceil(pageData.value.length / pageDivide.value) : 1;
+  });
+  var pageDivideList = Object(vue_composition_api_umd["computed"])(function () {
+    var list = [];
+
+    if (tableData.value.length > 10) {
+      list.push(5);
+    }
+
+    if (tableData.value.length > 20) {
+      list.push(10);
+    }
+
+    if (tableData.value.length > 50) {
+      list.push(20);
+    }
+
+    if (tableData.value.length > 100) {
+      list.push(50);
+    }
+
+    if (tableData.value.length > 200) {
+      list.push(100);
+    }
+
+    if (tableData.value.length > 400) {
+      list.push(200);
+    }
+
+    if (tableData.value.length > 800) {
+      list.push(400);
+    }
+
+    list.push(tableData.value.length);
+    return list;
+  });
+  var sortTemp = Object(vue_composition_api_umd["reactive"])({
+    name: "",
+    order: "asc"
+  });
+
+  var _getCurrentConfig = getCurrentConfig(ctx),
+      currentConfig = _getCurrentConfig.currentConfig;
+
+  var _getTableData = getTableData(ctx),
+      columns = _getTableData.columns,
+      tableData = _getTableData.tableData,
+      labelList = _getTableData.labelList,
+      searchMode = _getTableData.searchMode;
+
+  var currentData = Object(vue_composition_api_umd["computed"])(function () {
+    return pageData.value.slice(page.value * pageDivide.value - pageDivide.value, page.value * pageDivide.value);
+  });
+  var pageData = Object(vue_composition_api_umd["computed"])({
+    get: function get() {
+      var result = tableData.value;
+
+      var _iterator = _createForOfIteratorHelper(searchMode.value),
+          _step;
+
+      try {
+        var _loop = function _loop() {
+          var item = _step.value;
+
+          if (item.mode === null || typeof item.val === "undefined" || item.val.length === 0) {
+            return "continue";
+          }
+
+          result = item.equal ? result.filter(function (val) {
+            return String(val[item.name]).trim() === String(item.val);
+          }) : result.filter(function (val) {
+            return String(val[item.name]).trim().includes(String(item.val));
+          });
+        };
+
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _ret = _loop();
+
+          if (_ret === "continue") continue;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return result;
+    },
+    set: function set(val) {
+      return val;
+    }
+  });
+  var watchPage = Object(vue_composition_api_umd["watch"])([function () {
+    return page.value;
+  }], function () {
+    currentConfig.value.onChangePage(page.value);
+  });
+  var watchPageCount = Object(vue_composition_api_umd["watch"])([function () {
+    return pageCount.value;
+  }], function () {
+    page.value = 1;
+  });
+  currentConfig.value.onLoadData(pageData.value);
+  Object(vue_composition_api_umd["onUnmounted"])(function () {
+    watchPage();
+    watchPageCount();
+  });
+
+  function sortData(params) {
+    var name = params.name,
+        order = params.order;
+
+    function innerCompare(a, b) {
+      var search = searchMode.value.find(function (e) {
+        return e.name === name;
+      });
+      var callback = currentConfig.value.onSortData(name);
+
+      if (callback) {
+        return callback(a, b);
+      }
+
+      if (search !== undefined && Array.isArray(search.mode)) {
+        var _search$mode$find$wei, _search$mode$find, _search$mode$find$wei2, _search$mode$find2;
+
+        var p1 = (_search$mode$find$wei = (_search$mode$find = search.mode.find(function (e) {
+          return e.val.toString() === String(a);
+        })) === null || _search$mode$find === void 0 ? void 0 : _search$mode$find.weight) !== null && _search$mode$find$wei !== void 0 ? _search$mode$find$wei : Number(a);
+        var p2 = (_search$mode$find$wei2 = (_search$mode$find2 = search.mode.find(function (e) {
+          return e.val.toString() === String(b);
+        })) === null || _search$mode$find2 === void 0 ? void 0 : _search$mode$find2.weight) !== null && _search$mode$find$wei2 !== void 0 ? _search$mode$find$wei2 : Number(b);
+        return p1 - p2;
+      }
+
+      return isNaN(Number(a)) ? a.length - b.length : Number(a) - Number(b);
+    }
+
+    pageData.value = pageData.value.sort(function (a, b) {
+      return (order === "asc" ? 1 : -1) * innerCompare(a[name], b[name]);
+    });
+  }
+
+  function resetSearchMode() {
+    searchMode.value.forEach(function (item) {
+      item.val = "";
+    });
+    page.value = 1;
+    pageDivide.value = 10;
+  }
+
+  function downloadFile() {
+    var stream = new Stream();
+    var injectJson = currentConfig.value.injectJson(currentConfig.value);
+
+    var wipe = function wipe(data) {
+      return _objectSpread2(_objectSpread2({}, injectJson), {}, {
+        name: currentConfig.value.title,
+        count: data.length,
+        data: data
+      });
+    };
+
+    var prettyJson = function prettyJson(data) {
+      var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      return flag ? JSON.stringify(wipe(data), null, 2) : JSON.stringify(wipe(data));
+    };
+
+    if (downloadOp.value === downloadOps.value[0]) {
+      ajaxDownloadFile(currentConfig.value.data);
+    } else if (downloadOp.value === downloadOps.value[1]) {
+      stream.write(prettyJson(currentData.value));
+      stream.out(currentConfig.value.title + "-\u7B2C".concat(page.value, "\u9875\uFF08\u65E0\u7F29\u8FDB\uFF09.json"));
+    } else if (downloadOp.value === downloadOps.value[2]) {
+      stream.write(prettyJson(currentData.value, true));
+      stream.out(currentConfig.value.title + "-\u7B2C".concat(page.value, "\u9875\uFF08\u6709\u7F29\u8FDB\uFF09.json"));
+    } else if (downloadOp.value === downloadOps.value[3]) {
+      stream.write(prettyJson(pageData.value));
+      stream.out(currentConfig.value.title + "-所有数据（无缩进）.json");
+    } else if (downloadOp.value === downloadOps.value[4]) {
+      stream.write(prettyJson(pageData.value, true));
+      stream.out(currentConfig.value.title + "-所有数据（有缩进）.json");
+    }
+  }
+
+  document.title = ctx.root.$store.state.globalConfig.title + " | " + currentConfig.value.title;
+  return {
+    page: page,
+    pageData: pageData,
+    pageCount: pageCount,
+    isSearch: isSearch,
+    columns: columns,
+    pageDivide: pageDivide,
+    pageDivideList: pageDivideList,
+    sortData: sortData,
+    labelList: labelList,
+    sortTemp: sortTemp,
+    searchMode: searchMode,
+    currentConfig: currentConfig,
+    resetSearchMode: resetSearchMode,
+    tableDisplayFlex: tableDisplayFlex,
+    tableDisplayFlexList: tableDisplayFlexList,
+    tableFlexBindClass: tableFlexBindClass,
+    downloadFile: downloadFile,
+    downloadOps: downloadOps,
+    downloadOp: downloadOp,
+    tableData: tableData
+  };
+}
 // CONCATENATED MODULE: ./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/.pnpm/thread-loader@2.1.3_webpack@4.46.0/node_modules/thread-loader/dist/cjs.js!./node_modules/.pnpm/babel-loader@8.2.2_10b6a9815ffc7b4b1f51ac243f183029/node_modules/babel-loader/lib!./node_modules/.pnpm/ts-loader@6.2.2_typescript@3.9.10/node_modules/ts-loader??ref--13-3!./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib??vue-loader-options!./src/components/display.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* harmony default export */ var displayvue_type_script_lang_ts_ = (Object(vue_composition_api_umd["defineComponent"])({
   name: "mt-display",
-  setup: function setup(props, ctx) {
-    var page = Object(vue_composition_api_umd["ref"])(1);
-    var isSearch = Object(vue_composition_api_umd["ref"])(false);
-    var pageDivide = Object(vue_composition_api_umd["ref"])(10);
-    var tableDisplayFlexList = Object(vue_composition_api_umd["ref"])(["表格固宽盒内显示", "表格全宽屏内显示"]);
-    var tableDisplayFlex = Object(vue_composition_api_umd["computed"])({
-      get: function get() {
-        var flex = ctx.root.$store.state.globalConfig.tableFullWidth;
-        return flex ? tableDisplayFlexList.value[1] : tableDisplayFlexList.value[0];
-      },
-      set: function set(val) {
-        if (val === tableDisplayFlexList.value[0]) {
-          ctx.root.$store.commit("setTableFullWidth", false);
-          window.localStorage.setItem(STORAGE_KEY.TABLE_FULLWIDTH, "0");
-        } else if (val === tableDisplayFlexList.value[1]) {
-          ctx.root.$store.commit("setTableFullWidth", true);
-          window.localStorage.setItem(STORAGE_KEY.TABLE_FULLWIDTH, "1");
-        }
-
-        return val;
-      }
-    });
-    var tableFlexBindClass = Object(vue_composition_api_umd["computed"])(function () {
-      for (var i = 0; i < tableDisplayFlexList.value.length; i++) {
-        if (tableDisplayFlexList.value[i] === tableDisplayFlex.value) {
-          return i;
-        }
-      }
-
-      return 0;
-    });
-    var downloadOps = Object(vue_composition_api_umd["ref"])(["下载源文件", "下载当前展示数据（无缩进）", "下载当前展示数据（有缩进）", "下载当前所有数据（无缩进）", "下载当前所有数据（有缩进）"]);
-    var downloadOp = Object(vue_composition_api_umd["ref"])(downloadOps.value[0]);
-    var pageCount = Object(vue_composition_api_umd["computed"])(function () {
-      return Math.ceil(pageData.value.length / pageDivide.value) > 0 && pageDivide.value > 0 ? Math.ceil(pageData.value.length / pageDivide.value) : 1;
-    });
-    var pageDivideList = Object(vue_composition_api_umd["computed"])(function () {
-      var list = [];
-
-      if (tableData.value.length > 10) {
-        list.push(5);
-      }
-
-      if (tableData.value.length > 20) {
-        list.push(10);
-      }
-
-      if (tableData.value.length > 50) {
-        list.push(20);
-      }
-
-      if (tableData.value.length > 100) {
-        list.push(50);
-      }
-
-      if (tableData.value.length > 200) {
-        list.push(100);
-      }
-
-      if (tableData.value.length > 400) {
-        list.push(200);
-      }
-
-      if (tableData.value.length > 800) {
-        list.push(400);
-      }
-
-      list.push(tableData.value.length);
-      return list;
-    });
-    var sortTemp = Object(vue_composition_api_umd["reactive"])({
-      name: "",
-      order: "asc"
-    });
-
-    var _getCurrentConfig = getCurrentConfig(ctx),
-        currentConfig = _getCurrentConfig.currentConfig;
-
-    var _getTableData = getTableData(ctx),
-        columns = _getTableData.columns,
-        tableData = _getTableData.tableData,
-        labelList = _getTableData.labelList,
-        searchMode = _getTableData.searchMode;
-
-    var currentData = Object(vue_composition_api_umd["computed"])(function () {
-      return pageData.value.slice(page.value * pageDivide.value - pageDivide.value, page.value * pageDivide.value);
-    });
-    var pageData = Object(vue_composition_api_umd["computed"])({
-      get: function get() {
-        var result = tableData.value;
-
-        var _iterator = _createForOfIteratorHelper(searchMode.value),
-            _step;
-
-        try {
-          var _loop = function _loop() {
-            var item = _step.value;
-
-            if (item.mode === null || typeof item.val === "undefined" || item.val.length === 0) {
-              return "continue";
-            }
-
-            result = item.equal ? result.filter(function (val) {
-              return String(val[item.name]).trim() === String(item.val);
-            }) : result.filter(function (val) {
-              return String(val[item.name]).trim().includes(String(item.val));
-            });
-          };
-
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var _ret = _loop();
-
-            if (_ret === "continue") continue;
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-
-        return result;
-      },
-      set: function set(val) {
-        return val;
-      }
-    });
-    var watchPage = Object(vue_composition_api_umd["watch"])([function () {
-      return page.value;
-    }], function () {
-      currentConfig.value.onChangePage(page.value);
-    });
-    var watchPageCount = Object(vue_composition_api_umd["watch"])([function () {
-      return pageCount.value;
-    }], function () {
-      page.value = 1;
-    });
-    currentConfig.value.onLoadData(pageData.value);
-    Object(vue_composition_api_umd["onUnmounted"])(function () {
-      watchPage();
-      watchPageCount();
-    });
-
-    function sortData(params) {
-      var name = params.name,
-          order = params.order;
-
-      function innerCompare(a, b) {
-        var search = searchMode.value.find(function (e) {
-          return e.name === name;
-        });
-        var callback = currentConfig.value.onSortData(name);
-
-        if (callback) {
-          return callback(a, b);
-        }
-
-        if (search !== undefined && Array.isArray(search.mode)) {
-          var _search$mode$find$wei, _search$mode$find, _search$mode$find$wei2, _search$mode$find2;
-
-          var p1 = (_search$mode$find$wei = (_search$mode$find = search.mode.find(function (e) {
-            return e.val.toString() === String(a);
-          })) === null || _search$mode$find === void 0 ? void 0 : _search$mode$find.weight) !== null && _search$mode$find$wei !== void 0 ? _search$mode$find$wei : Number(a);
-          var p2 = (_search$mode$find$wei2 = (_search$mode$find2 = search.mode.find(function (e) {
-            return e.val.toString() === String(b);
-          })) === null || _search$mode$find2 === void 0 ? void 0 : _search$mode$find2.weight) !== null && _search$mode$find$wei2 !== void 0 ? _search$mode$find$wei2 : Number(b);
-          return p1 - p2;
-        }
-
-        return isNaN(Number(a)) ? a.length - b.length : Number(a) - Number(b);
-      }
-
-      pageData.value = pageData.value.sort(function (a, b) {
-        return (order === "asc" ? 1 : -1) * innerCompare(a[name], b[name]);
-      });
-    }
-
-    function resetSearchMode() {
-      searchMode.value.forEach(function (item) {
-        item.val = "";
-      });
-      page.value = 1;
-      pageDivide.value = 10;
-    }
-
-    function downloadFile() {
-      var stream = new Stream();
-
-      var wipe = function wipe(data) {
-        return {
-          name: currentConfig.value.title,
-          count: data.length,
-          data: data
-        };
-      };
-
-      var prettyJson = function prettyJson(data) {
-        var flag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-        return flag ? JSON.stringify(wipe(data), null, 2) : JSON.stringify(wipe(data));
-      };
-
-      if (downloadOp.value === downloadOps.value[0]) {
-        ajaxDownloadFile(currentConfig.value.data);
-      } else if (downloadOp.value === downloadOps.value[1]) {
-        stream.write(prettyJson(currentData.value));
-        stream.out(currentConfig.value.title + "-\u7B2C".concat(page.value, "\u9875\uFF08\u65E0\u7F29\u8FDB\uFF09.json"));
-      } else if (downloadOp.value === downloadOps.value[2]) {
-        stream.write(prettyJson(currentData.value, true));
-        stream.out(currentConfig.value.title + "-\u7B2C".concat(page.value, "\u9875\uFF08\u6709\u7F29\u8FDB\uFF09.json"));
-      } else if (downloadOp.value === downloadOps.value[3]) {
-        stream.write(prettyJson(pageData.value));
-        stream.out(currentConfig.value.title + "-所有数据（无缩进）.json");
-      } else if (downloadOp.value === downloadOps.value[4]) {
-        stream.write(prettyJson(pageData.value, true));
-        stream.out(currentConfig.value.title + "-所有数据（有缩进）.json");
-      }
-    }
+  setup: function setup(_, ctx) {
+    var _useTable = useTable(ctx),
+        page = _useTable.page,
+        pageData = _useTable.pageData,
+        pageCount = _useTable.pageCount,
+        isSearch = _useTable.isSearch,
+        columns = _useTable.columns,
+        pageDivide = _useTable.pageDivide,
+        pageDivideList = _useTable.pageDivideList,
+        sortData = _useTable.sortData,
+        labelList = _useTable.labelList,
+        sortTemp = _useTable.sortTemp,
+        searchMode = _useTable.searchMode,
+        currentConfig = _useTable.currentConfig,
+        resetSearchMode = _useTable.resetSearchMode,
+        tableDisplayFlex = _useTable.tableDisplayFlex,
+        tableDisplayFlexList = _useTable.tableDisplayFlexList,
+        tableFlexBindClass = _useTable.tableFlexBindClass,
+        downloadFile = _useTable.downloadFile,
+        downloadOps = _useTable.downloadOps,
+        downloadOp = _useTable.downloadOp,
+        tableData = _useTable.tableData;
 
     document.title = ctx.root.$store.state.globalConfig.title + " | " + currentConfig.value.title;
     return {
@@ -15168,8 +15224,8 @@ var displayvue_type_style_index_0_lang_css_ = __webpack_require__("a41e");
 
 var display_component = normalizeComponent(
   components_displayvue_type_script_lang_ts_,
-  displayvue_type_template_id_5558814d_render,
-  displayvue_type_template_id_5558814d_staticRenderFns,
+  displayvue_type_template_id_d7aaa3b4_render,
+  displayvue_type_template_id_d7aaa3b4_staticRenderFns,
   false,
   null,
   null,
@@ -15516,9 +15572,6 @@ var router_routes = [{
 // EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.fill.js
 var es_array_fill = __webpack_require__("d8e6");
 
-// EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.index-of.js
-var es_array_index_of = __webpack_require__("2d78");
-
 // CONCATENATED MODULE: ./src/utils/helper.ts
 
 
@@ -15565,93 +15618,95 @@ function createSelection(fromTo) {
     return _cb(v);
   });
 }
+
+function _parseMode(searchMode, op) {
+  var _op$label, _op$mode;
+
+  var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
+  var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
+
+  switch (searchMode) {
+    case SearchMode.None:
+      return {
+        able: false,
+        mode: null,
+        sort: true,
+        label: label
+      };
+
+    case SearchMode.FullMatch:
+      return {
+        able: true,
+        mode: "[=]",
+        label: label
+      };
+
+    case SearchMode.PartialMatch:
+      return {
+        able: true,
+        mode: "[?]",
+        label: label
+      };
+
+    case SearchMode.Sort:
+      return {
+        able: true,
+        mode: null,
+        sort: true,
+        label: label
+      };
+
+    case SearchMode.Select:
+      return {
+        able: true,
+        label: label,
+        mode: mode
+      };
+
+    case SearchMode.SortSelect:
+      return {
+        able: true,
+        sort: true,
+        label: label,
+        mode: mode
+      };
+  }
+}
+
 function createMode(row) {
   var conf = [];
   var labels = Object.keys(row);
   var values = Object.values(row);
 
-  function $$(searchMode, op) {
-    var _op$label, _op$mode;
-
-    var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
-    var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
-
-    switch (searchMode) {
-      case SearchMode.None:
-        return {
-          able: false,
-          mode: null,
-          sort: true,
-          label: label
-        };
-
-      case SearchMode.FullMatch:
-        return {
-          able: true,
-          mode: "[=]",
-          label: label
-        };
-
-      case SearchMode.PartialMatch:
-        return {
-          able: true,
-          mode: "[?]",
-          label: label
-        };
-
-      case SearchMode.Sort:
-        return {
-          able: true,
-          mode: null,
-          sort: true,
-          label: label
-        };
-
-      case SearchMode.Select:
-        return {
-          able: true,
-          label: label,
-          mode: mode
-        };
-
-      case SearchMode.SortSelect:
-        return {
-          able: true,
-          sort: true,
-          label: label,
-          mode: mode
-        };
-    }
-  }
-
   for (var i = 0; i < labels.length; i++) {
     if (values[i] === null) {
-      var m = $$(SearchMode.None, {
+      var m = _parseMode(SearchMode.None, {
         label: labels[i]
       });
+
       conf.push(m);
     } else if (typeof values[i] === "string") {
-      var _m = $$(values[i] === "==" ? SearchMode.FullMatch : SearchMode.PartialMatch, {
+      var _m = _parseMode(values[i] === "==" ? SearchMode.FullMatch : SearchMode.PartialMatch, {
         label: labels[i]
       });
 
       conf.push(_m);
     } else if (typeof values[i] === "number") {
-      var _m2 = $$(SearchMode.Sort, {
+      var _m2 = _parseMode(SearchMode.Sort, {
         label: labels[i]
       });
 
       conf.push(_m2);
     } else if (Array.isArray(values[i])) {
       if (typeof values[i][0] === "string") {
-        var _m3 = $$(SearchMode.Select, {
+        var _m3 = _parseMode(SearchMode.Select, {
           label: labels[i],
           mode: values[i]
         });
 
         conf.push(_m3);
       } else if (values[i][0]["key"] && values[i][0]["val"] && values[i][0]["weight"]) {
-        var _m4 = $$(SearchMode.SortSelect, {
+        var _m4 = _parseMode(SearchMode.SortSelect, {
           label: labels[i],
           mode: values[i]
         });
@@ -15663,29 +15718,33 @@ function createMode(row) {
 
   return conf;
 }
-function createConf(info, row) {
-  function conf(info, config) {
-    var data = "";
-    var title = "";
 
-    if (typeof info === "string") {
-      data = info;
-      title = data.slice(0, data.indexOf("."));
-    } else {
-      data = info[0];
-      title = info[1];
-    }
+function _genConf(info, config) {
+  var data = "";
+  var title = "";
 
-    return {
-      data: data,
-      title: title,
-      config: config,
-      index: true
-    };
+  if (typeof info === "string") {
+    data = info;
+    title = data.slice(0, data.lastIndexOf("."));
+  } else if (Array.isArray(info)) {
+    var _info$;
+
+    data = info[0];
+    title = (_info$ = info[1]) !== null && _info$ !== void 0 ? _info$ : data.slice(0, data.lastIndexOf("."));
   }
 
+  return {
+    data: data,
+    title: title,
+    config: config,
+    index: true
+  };
+}
+
+function createConf(info, row, mergeConfig) {
   var config = createMode(row);
-  var res = conf(info, config);
+
+  var res = _genConf(info, config);
 
   if (typeof info !== "string" && !Array.isArray(info) && Object.prototype.toString.call(info) === "[object Object]") {
     var keys = Object.keys(info);
@@ -15693,6 +15752,16 @@ function createConf(info, row) {
 
     for (var i = 0; i < keys.length; i++) {
       res[keys[i]] = vals[i];
+    }
+  }
+
+  if (Object.prototype.toString.call(mergeConfig) === "[object Object]") {
+    var _keys = Object.keys(mergeConfig);
+
+    var _vals = Object.values(mergeConfig);
+
+    for (var _i = 0; _i < _keys.length; _i++) {
+      res[_keys[_i]] = _vals[_i];
     }
   }
 
@@ -15810,6 +15879,11 @@ var main_Matable = /*#__PURE__*/function () {
 
 var init = function init(globalConfig) {
   return new main_Matable(globalConfig);
+};
+var s = {
+  createMode: createMode,
+  createConf: createConf,
+  createSelection: createSelection
 };
 
 
@@ -17920,35 +17994,6 @@ var classof = __webpack_require__("475b");
 module.exports = Array.isArray || function isArray(arg) {
   return classof(arg) == 'Array';
 };
-
-
-/***/ }),
-
-/***/ "2d78":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* eslint-disable es/no-array-prototype-indexof -- required for testing */
-var $ = __webpack_require__("bcd8");
-var $indexOf = __webpack_require__("7bec").indexOf;
-var arrayMethodIsStrict = __webpack_require__("6e39");
-
-var nativeIndexOf = [].indexOf;
-
-var NEGATIVE_ZERO = !!nativeIndexOf && 1 / [1].indexOf(1, -0) < 0;
-var STRICT_METHOD = arrayMethodIsStrict('indexOf');
-
-// `Array.prototype.indexOf` method
-// https://tc39.es/ecma262/#sec-array.prototype.indexof
-$({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD }, {
-  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
-    return NEGATIVE_ZERO
-      // convert -0 to +0
-      ? nativeIndexOf.apply(this, arguments) || 0
-      : $indexOf(this, searchElement, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
 
 
 /***/ }),
@@ -25157,7 +25202,7 @@ exportTypedArrayMethod('some', function some(callbackfn /* , thisArg */) {
 /***/ "9224":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"matable\",\"version\":\"2.0.0\",\"scripts\":{\"serve\":\"vue-cli-service serve\",\"build\":\"zx shell/build.mjs\",\"deploy\":\"zx shell/deploy.mjs\"},\"dependencies\":{\"core-js\":\"^3.6.5\",\"csvtojson\":\"^2.0.10\",\"muse-ui\":\"^3.0.2\",\"vue\":\"^2.6.11\",\"vue-multiple-back-top\":\"^1.0.2\",\"vuex\":\"^3.4.0\",\"xlsx\":\"^0.17.0\"},\"devDependencies\":{\"@types/fs-extra\":\"^9.0.12\",\"@types/node\":\"^16.4.7\",\"@vue/cli-plugin-babel\":\"~4.4.0\",\"@vue/cli-plugin-typescript\":\"~4.4.0\",\"@vue/cli-plugin-vuex\":\"^4.4.4\",\"@vue/cli-service\":\"~4.4.0\",\"@vue/composition-api\":\"^0.6.5\",\"axios\":\"^0.19.2\",\"enquirer\":\"^2.3.6\",\"execa\":\"^5.1.1\",\"filexon\":\"^1.1.0\",\"fs-extra\":\"^9.0.1\",\"regenerator-runtime\":\"^0.13.9\",\"rimraf\":\"^3.0.2\",\"typescript\":\"~3.9.3\",\"vue-router\":\"^3.3.4\",\"vue-template-compiler\":\"^2.6.11\"}}");
+module.exports = JSON.parse("{\"name\":\"matable\",\"version\":\"2.0.0\",\"scripts\":{\"serve\":\"vue-cli-service serve\",\"build\":\"zx shell/build.mjs && node shell/copyDecFile.js\",\"deploy\":\"zx shell/deploy.mjs\"},\"dependencies\":{\"core-js\":\"^3.6.5\",\"csvtojson\":\"^2.0.10\",\"muse-ui\":\"^3.0.2\",\"vue\":\"^2.6.11\",\"vue-multiple-back-top\":\"^1.0.2\",\"vuex\":\"^3.4.0\",\"xlsx\":\"^0.17.0\"},\"devDependencies\":{\"@types/fs-extra\":\"^9.0.12\",\"@types/node\":\"^16.4.7\",\"@vue/cli-plugin-babel\":\"~4.4.0\",\"@vue/cli-plugin-typescript\":\"~4.4.0\",\"@vue/cli-plugin-vuex\":\"^4.4.4\",\"@vue/cli-service\":\"~4.4.0\",\"@vue/composition-api\":\"^0.6.5\",\"axios\":\"^0.19.2\",\"enquirer\":\"^2.3.6\",\"execa\":\"^5.1.1\",\"filexon\":\"^1.1.0\",\"fs-extra\":\"^9.0.1\",\"regenerator-runtime\":\"^0.13.9\",\"rimraf\":\"^3.0.2\",\"typescript\":\"~3.9.3\",\"vue-router\":\"^3.3.4\",\"vue-template-compiler\":\"^2.6.11\"}}");
 
 /***/ }),
 

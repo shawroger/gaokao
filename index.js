@@ -1,7 +1,28 @@
+/// <reference path="assets/matable.d.ts" />
+
+const Matable = window.Matable;
+
 const { createConf, createSelection } = Matable;
 
-function h(a, ...b) {
-	return createConf(["./@data/" + a[0], a[1]], ...b);
+/**
+ *
+ * @param {[string, string]} a
+ * @param {import("./assets/matable").Config} b
+ * @param {Partial<import("./assets/matable").Config> | Record<string, number | string>} c
+ * @returns
+ */
+function h(
+	a,
+	b,
+	c = {
+		injectJson() {
+			return {
+				timeStamp: new Date().toLocaleTimeString(),
+			};
+		},
+	}
+) {
+	return createConf(["./@data/" + a[0], a[1]], b, c);
 }
 
 const 班级 = createSelection([1, 17], (i) => i + " 班");
