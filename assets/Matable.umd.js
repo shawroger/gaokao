@@ -10360,9 +10360,10 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "init", function() { return /* reexport */ init; });
+__webpack_require__.d(__webpack_exports__, "parseMode", function() { return /* reexport */ parseMode; });
 __webpack_require__.d(__webpack_exports__, "createMode", function() { return /* reexport */ createMode; });
 __webpack_require__.d(__webpack_exports__, "createConf", function() { return /* reexport */ createConf; });
-__webpack_require__.d(__webpack_exports__, "createSelection", function() { return /* reexport */ createSelection; });
+__webpack_require__.d(__webpack_exports__, "Select", function() { return /* reexport */ helper_Select; });
 
 // CONCATENATED MODULE: ./node_modules/.pnpm/@vue+cli-service@4.4.6_559daba3497a876383561af73426cb00/node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -14675,6 +14676,29 @@ var displayvue_type_template_id_d7aaa3b4_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/display.vue?vue&type=template&id=d7aaa3b4&
 
+// CONCATENATED MODULE: ./node_modules/.pnpm/@babel+runtime@7.14.8/node_modules/@babel/runtime/helpers/esm/typeof.js
+
+
+
+
+
+
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
 // CONCATENATED MODULE: ./node_modules/.pnpm/@babel+runtime@7.14.8/node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js
 
 
@@ -14899,7 +14923,247 @@ var Upload = (function () {
 
 
 //# sourceMappingURL=index.js.map
+// EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.fill.js
+var es_array_fill = __webpack_require__("d8e6");
+
+// CONCATENATED MODULE: ./src/utils/helper.ts
+
+
+
+
+
+
+
+
+
+
+
+
+function helper_warn(msg, errType) {
+  console.warn("[Matable warn] ".concat(msg, " ").concat(errType ? " [WARN::" + errType.toUpperCase() + "]" : ""));
+}
+function error(msg, errType) {
+  console.error("[Matable warn] ".concat(msg, " ").concat(errType ? " [ERR::" + errType.toUpperCase() + "]" : ""));
+}
+
+function mergeConfigImpl(baseConf, mergeConfig) {
+  if (Object.prototype.toString.call(mergeConfig) === "[object Object]") {
+    var keys = Object.keys(mergeConfig);
+    var vals = Object.values(mergeConfig);
+
+    for (var i = 0; i < keys.length; i++) {
+      baseConf[keys[i]] = vals[i];
+    }
+  }
+}
+
+var SearchMode;
+
+(function (SearchMode) {
+  SearchMode[SearchMode["None"] = 0] = "None";
+  SearchMode[SearchMode["FullMatch"] = 1] = "FullMatch";
+  SearchMode[SearchMode["PartialMatch"] = 2] = "PartialMatch";
+  SearchMode[SearchMode["Select"] = 3] = "Select";
+  SearchMode[SearchMode["Sort"] = 4] = "Sort";
+  SearchMode[SearchMode["SortSelect"] = 5] = "SortSelect";
+  SearchMode[SearchMode["SortFullMatch"] = 6] = "SortFullMatch";
+  SearchMode[SearchMode["SortPartialMatch"] = 7] = "SortPartialMatch";
+})(SearchMode || (SearchMode = {}));
+
+var helper_Select = /*#__PURE__*/function () {
+  function Select() {
+    _classCallCheck(this, Select);
+  }
+
+  _createClass(Select, null, [{
+    key: "from",
+    value: function from(arr) {
+      var mapper = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Select.defaultMap;
+      return arr.map(mapper);
+    }
+  }, {
+    key: "range",
+    value: function range(fromTo) {
+      var mapper = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (n) {
+        return String(n);
+      };
+
+      var _fromTo = _slicedToArray(fromTo, 2),
+          from = _fromTo[0],
+          to = _fromTo[1];
+
+      return Array(to - from).fill(0).map(function (_, i) {
+        return i + fromTo[0];
+      }).map(mapper).map(Select.defaultMap);
+    }
+  }]);
+
+  return Select;
+}();
+
+helper_Select.defaultMap = function (key, weight) {
+  return {
+    key: key,
+    weight: weight,
+    val: key
+  };
+};
+
+function provideInternalMode(searchMode, op) {
+  var _op$label, _op$mode;
+
+  var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
+  var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
+
+  switch (searchMode) {
+    case SearchMode.None:
+      return {
+        able: false,
+        mode: null,
+        sort: true,
+        label: label
+      };
+
+    case SearchMode.FullMatch:
+      return {
+        able: true,
+        mode: "[=]",
+        label: label
+      };
+
+    case SearchMode.SortFullMatch:
+      return {
+        able: true,
+        mode: "[=]",
+        label: label,
+        sort: true
+      };
+
+    case SearchMode.PartialMatch:
+      return {
+        able: true,
+        mode: "[?]",
+        label: label
+      };
+
+    case SearchMode.SortPartialMatch:
+      return {
+        able: true,
+        mode: "[?]",
+        label: label,
+        sort: true
+      };
+
+    case SearchMode.Sort:
+      return {
+        able: true,
+        mode: null,
+        sort: true,
+        label: label
+      };
+
+    case SearchMode.Select:
+      return {
+        able: true,
+        label: label,
+        mode: mode
+      };
+
+    case SearchMode.SortSelect:
+      return {
+        able: true,
+        sort: true,
+        label: label,
+        mode: mode
+      };
+  }
+}
+
+function checkMode(rowValue) {
+  if (rowValue === null) {
+    return SearchMode.None;
+  } else if (typeof rowValue === "string") {
+    if (rowValue === "=" || rowValue === "==" || rowValue === "===") {
+      return SearchMode.FullMatch;
+    } else if (rowValue === ">=" || rowValue === "<=") {
+      return SearchMode.SortFullMatch;
+    } else if (rowValue === ">" || rowValue === "<") {
+      return SearchMode.SortPartialMatch;
+    } else {
+      return SearchMode.PartialMatch;
+    }
+  } else if (typeof rowValue === "number") {
+    return SearchMode.Sort;
+  } else if (Array.isArray(rowValue)) {
+    if (typeof rowValue[0] === "string") {
+      return SearchMode.Select;
+    } else if (typeof rowValue[0]["key"] === "string" && (typeof rowValue[0]["val"] === "string" || typeof rowValue[0]["val"] === "number") && typeof rowValue[0]["weight"] === "number") {
+      return SearchMode.SortSelect;
+    }
+  }
+
+  return SearchMode.None;
+}
+
+function parseMode(label, mode, mergeConfig) {
+  var searchMode = checkMode(mode);
+  var res = provideInternalMode(searchMode, {
+    label: label,
+    mode: mode
+  });
+  mergeConfigImpl(res, mergeConfig);
+  return res;
+}
+function createMode(row, mergeConfig) {
+  var conf = [];
+  var labels = Object.keys(row);
+  var values = Object.values(row);
+
+  for (var i = 0; i < labels.length; i++) {
+    conf.push(parseMode(labels[i], values[i]));
+  }
+
+  mergeConfigImpl(conf, mergeConfig);
+  return conf;
+}
+
+function _genConf(info, config) {
+  var data = "";
+  var title = "";
+
+  if (typeof info === "string") {
+    data = info;
+    title = data.slice(0, data.lastIndexOf("."));
+  } else if (Array.isArray(info)) {
+    var _info$;
+
+    data = info[0];
+    title = (_info$ = info[1]) !== null && _info$ !== void 0 ? _info$ : data.slice(0, data.lastIndexOf("."));
+  }
+
+  return {
+    data: data,
+    title: title,
+    config: config,
+    index: true
+  };
+}
+
+function createConf(info, row, mergeConfig) {
+  var config = Array.isArray(row) ? row : createMode(row);
+
+  var res = _genConf(info, config);
+
+  if (typeof info !== "string" && !Array.isArray(info)) {
+    mergeConfigImpl(res, info);
+  }
+
+  mergeConfigImpl(res, mergeConfig);
+  return res;
+}
 // CONCATENATED MODULE: ./src/utils/table.ts
+
+
 
 
 
@@ -15072,10 +15336,16 @@ function useTable(ctx) {
       var search = searchMode.value.find(function (e) {
         return e.name === name;
       });
-      var callback = currentConfig.value.onSortData(name);
+      var callback = currentConfig.value.onSortData(name, order === "asc" ? 1 : -1);
 
-      if (callback) {
-        return callback(a, b);
+      if (typeof callback === "function") {
+        var res = callback(a, b);
+
+        if (typeof res === "number") {
+          return res;
+        } else {
+          helper_warn("Invalid return type of hook function 'onSortData', it should be a 'number' type, found as '".concat(_typeof(res), "'"), "ONSORTDATA_BAD_RET");
+        }
       }
 
       if (search !== undefined && Array.isArray(search.mode)) {
@@ -15578,204 +15848,6 @@ var router_routes = [{
     hide: true
   }
 }];
-// EXTERNAL MODULE: ./node_modules/.pnpm/core-js@3.16.0/node_modules/core-js/modules/es.array.fill.js
-var es_array_fill = __webpack_require__("d8e6");
-
-// CONCATENATED MODULE: ./src/utils/helper.ts
-
-
-
-
-
-
-
-
-var SearchMode;
-
-(function (SearchMode) {
-  SearchMode[SearchMode["None"] = 0] = "None";
-  SearchMode[SearchMode["FullMatch"] = 1] = "FullMatch";
-  SearchMode[SearchMode["PartialMatch"] = 2] = "PartialMatch";
-  SearchMode[SearchMode["Select"] = 3] = "Select";
-  SearchMode[SearchMode["Sort"] = 4] = "Sort";
-  SearchMode[SearchMode["SortSelect"] = 5] = "SortSelect";
-})(SearchMode || (SearchMode = {}));
-
-function createSelection(fromTo) {
-  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (n) {
-    return {
-      weight: n,
-      key: String(n),
-      val: String(n)
-    };
-  };
-  var _cb = cb;
-
-  if (typeof cb(0) === "string") {
-    _cb = function _cb(n) {
-      return {
-        weight: n,
-        key: cb(n),
-        val: String(n)
-      };
-    };
-  }
-
-  return Array(fromTo[1] - fromTo[0]).fill(0).map(function (_, i) {
-    return i + fromTo[0];
-  }).map(function (v) {
-    return _cb(v);
-  });
-}
-
-function _parseMode(searchMode, op) {
-  var _op$label, _op$mode;
-
-  var label = (_op$label = op === null || op === void 0 ? void 0 : op.label) !== null && _op$label !== void 0 ? _op$label : "";
-  var mode = (_op$mode = op === null || op === void 0 ? void 0 : op.mode) !== null && _op$mode !== void 0 ? _op$mode : null;
-
-  switch (searchMode) {
-    case SearchMode.None:
-      return {
-        able: false,
-        mode: null,
-        sort: true,
-        label: label
-      };
-
-    case SearchMode.FullMatch:
-      return {
-        able: true,
-        mode: "[=]",
-        label: label
-      };
-
-    case SearchMode.PartialMatch:
-      return {
-        able: true,
-        mode: "[?]",
-        label: label
-      };
-
-    case SearchMode.Sort:
-      return {
-        able: true,
-        mode: null,
-        sort: true,
-        label: label
-      };
-
-    case SearchMode.Select:
-      return {
-        able: true,
-        label: label,
-        mode: mode
-      };
-
-    case SearchMode.SortSelect:
-      return {
-        able: true,
-        sort: true,
-        label: label,
-        mode: mode
-      };
-  }
-}
-
-function createMode(row) {
-  var conf = [];
-  var labels = Object.keys(row);
-  var values = Object.values(row);
-
-  for (var i = 0; i < labels.length; i++) {
-    if (values[i] === null) {
-      var m = _parseMode(SearchMode.None, {
-        label: labels[i]
-      });
-
-      conf.push(m);
-    } else if (typeof values[i] === "string") {
-      var _m = _parseMode(values[i] === "==" ? SearchMode.FullMatch : SearchMode.PartialMatch, {
-        label: labels[i]
-      });
-
-      conf.push(_m);
-    } else if (typeof values[i] === "number") {
-      var _m2 = _parseMode(SearchMode.Sort, {
-        label: labels[i]
-      });
-
-      conf.push(_m2);
-    } else if (Array.isArray(values[i])) {
-      if (typeof values[i][0] === "string") {
-        var _m3 = _parseMode(SearchMode.Select, {
-          label: labels[i],
-          mode: values[i]
-        });
-
-        conf.push(_m3);
-      } else if (values[i][0]["key"] && values[i][0]["val"] && values[i][0]["weight"]) {
-        var _m4 = _parseMode(SearchMode.SortSelect, {
-          label: labels[i],
-          mode: values[i]
-        });
-
-        conf.push(_m4);
-      }
-    }
-  }
-
-  return conf;
-}
-
-function _genConf(info, config) {
-  var data = "";
-  var title = "";
-
-  if (typeof info === "string") {
-    data = info;
-    title = data.slice(0, data.lastIndexOf("."));
-  } else if (Array.isArray(info)) {
-    var _info$;
-
-    data = info[0];
-    title = (_info$ = info[1]) !== null && _info$ !== void 0 ? _info$ : data.slice(0, data.lastIndexOf("."));
-  }
-
-  return {
-    data: data,
-    title: title,
-    config: config,
-    index: true
-  };
-}
-
-function createConf(info, row, mergeConfig) {
-  var config = createMode(row);
-
-  var res = _genConf(info, config);
-
-  if (typeof info !== "string" && !Array.isArray(info) && Object.prototype.toString.call(info) === "[object Object]") {
-    var keys = Object.keys(info);
-    var vals = Object.values(info);
-
-    for (var i = 0; i < keys.length; i++) {
-      res[keys[i]] = vals[i];
-    }
-  }
-
-  if (Object.prototype.toString.call(mergeConfig) === "[object Object]") {
-    var _keys = Object.keys(mergeConfig);
-
-    var _vals = Object.values(mergeConfig);
-
-    for (var _i = 0; _i < _keys.length; _i++) {
-      res[_keys[_i]] = _vals[_i];
-    }
-  }
-
-  return res;
-}
 // EXTERNAL MODULE: ./package.json
 var package_0 = __webpack_require__("9224");
 
@@ -15888,11 +15960,6 @@ var main_Matable = /*#__PURE__*/function () {
 
 var init = function init(globalConfig) {
   return new main_Matable(globalConfig);
-};
-var s = {
-  createMode: createMode,
-  createConf: createConf,
-  createSelection: createSelection
 };
 
 

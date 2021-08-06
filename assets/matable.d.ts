@@ -35,11 +35,36 @@ interface Config {
 
 	onLoadData: (data: Array<{ [p: string]: string }>) => void;
 	onChangePage: (page: number) => void;
-	onSortData: (key: string) => void | ((a: string, b: string) => number);
+	onSortData: (
+		key?: string,
+		order?: 1 | -1
+	) => void | ((a: string, b: string) => number);
 	injectJson: (config: Config) => Record<string, string | number>;
 	meta: {
 		[key: string]: any;
 	};
+}
+
+export type FilledSearchMode = { key: string; val: string; weight: number }[];
+
+export type SelectMapper = (
+	key: string,
+	index: number
+) => {
+	key: string;
+	val: string;
+	weight: number;
+};
+
+export class Select {
+	static defaultMap: SelectMapper;
+
+	static from(arr: Array<string>, mapper: SelectMapper): FilledSearchMode;
+
+	static range(
+		fromTo: [number, number],
+		mapper: (n: number) => string
+	): FilledSearchMode;
 }
 
 export class Matable {
@@ -62,6 +87,19 @@ export class Matable {
 }
 
 export type RowData = null | number | string | Config["config"][0]["mode"];
+
+export interface ISearchModeConfig {
+	mode: string | null | FilledSearchMode | string[];
+	able: boolean;
+	label: string;
+	$$val?: string;
+	sort: boolean;
+}
+
+export function parseMode(
+	label: string,
+	mode: RowData
+): Partial<ISearchModeConfig>;
 
 export function createMode(row: {
 	[key: string]: RowData;
@@ -88,12 +126,13 @@ export interface MatableGlobal {
 	init: typeof init;
 	createConf: typeof createConf;
 	createMode: typeof createMode;
-	createSelection: typeof createSelection;
+	parseMode: typeof parseMode;
+	Select: typeof Select;
 	Matable: Matable;
 }
 
 declare module "matable" {
-	export { init, createConf, createMode, createSelection, Matable };
+	export { init, createConf, createMode, parseMode, Select, Matable };
 	const matableGlobal: MatableGlobal;
 	export default matableGlobal;
 }
