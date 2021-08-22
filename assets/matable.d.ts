@@ -15,7 +15,6 @@ type SearchConfig = {
 	mode: string | null | ValidSearchMode | string[];
 	able: boolean;
 	label: string;
-	$$val?: string;
 	sort: boolean;
 };
 
@@ -55,8 +54,12 @@ export class Select {
 
 	static range(
 		fromTo: [number, number],
-		mapper: (n: number) => string
+		mapper: (n: number) => string | [string, string] | [string, string, number]
 	): ValidSearchMode;
+
+	static lazyRange(
+		mapper?: (n: number) => string | [string, string] | [string, string, number]
+	): (fromTo: [number, number]) => ReturnType<typeof Select.range>;
 }
 
 export class Matable {
@@ -70,6 +73,8 @@ export class Matable {
 	config(config: Config | Config[]): this;
 
 	render(target: string): this;
+
+	resolveData(config: Config): null | ITableData;
 }
 
 export type RowData = null | number | string | SearchConfig;
@@ -88,8 +93,6 @@ export function createConf(
 
 export function init(config?: Partial<GlobalConfig>): Matable;
 
-export function resolveData(config: Config): null | ITableData;
-
 export interface MatableGlobal {
 	Matable: Matable;
 	init: typeof init;
@@ -97,19 +100,10 @@ export interface MatableGlobal {
 	parseMode: typeof parseMode;
 	createConf: typeof createConf;
 	createMode: typeof createMode;
-	resolveData: typeof resolveData;
 }
 
 declare module "matable" {
-	export {
-		init,
-		createConf,
-		createMode,
-		parseMode,
-		resolveData,
-		Select,
-		Matable,
-	};
+	export { init, createConf, createMode, parseMode, Select, Matable };
 	const matableGlobal: MatableGlobal;
 	export default matableGlobal;
 }

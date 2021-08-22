@@ -1,8 +1,8 @@
-/// <reference path="assets/matable.d.ts" />
+/// <reference path="./matable.d.ts" />
 
 const Matable = window.Matable;
 
-const { createConf, Select } = Matable;
+const { createConf, parseMode, Select } = Matable;
 
 /**
  *
@@ -25,7 +25,7 @@ function h(
 	return createConf(["./@data/" + file, title], config, customConf);
 }
 
-const 班级 = Select.range([1, 17], (i) => i + " 班");
+const 班级 = Select.range([1, 17], (i) => [i + " 班", i]);
 
 const d2021 = h(["2021.xlsx", "2021高考录取结果"], {
 	姓名: "",
@@ -34,8 +34,8 @@ const d2021 = h(["2021.xlsx", "2021高考录取结果"], {
 	总分: 0,
 	学校: "",
 	专业: "",
-	备注: ["", "复读"],
-	层次: ["985", "211", "一本", "本科"],
+	备注: ["复读", "提前批"],
+	层次: ["985", "211", "一本"],
 });
 
 const d2020 = h(["2020.xlsx", "2020高考录取结果"], {
@@ -92,9 +92,7 @@ const d2018_s = h(["2018_s.xlsx", "2018科目成绩详情"], {
 	综合: 0,
 });
 
-const configList = [
-	d2021, d2020, d2019_1, d2019_2, d2018, d2018_s
-];
+const configList = [d2021, d2020, d2019_1, d2019_2, d2018, d2018_s];
 
 const matable = Matable.init({
 	copyright: true,
@@ -103,4 +101,6 @@ const matable = Matable.init({
 		name: "二〇二二 高考倒计时",
 		date: "2022-06-07 09:00:00",
 	},
-}).config(configList).render("#app");
+})
+	.config(configList)
+	.render("#app");

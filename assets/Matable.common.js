@@ -9625,12 +9625,12 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/.pnpm/vue@2.6.14/node_modules/vue/dist/vue.runtime.esm.js
 var vue_runtime_esm = __webpack_require__("d04a");
 
-// CONCATENATED MODULE: ./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69dc511b-vue-loader-template"}!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=7ea61334&
+// CONCATENATED MODULE: ./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69dc511b-vue-loader-template"}!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/cache-loader@4.1.0_webpack@4.46.0/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/.pnpm/vue-loader@15.9.6_679359cdb69c218f2f8f476b2ba08796/node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=46f3feea&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('app-nav'),_c('router-view'),_c('app-footer'),_c('vm-back-top',{staticClass:"top"})],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=7ea61334&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=46f3feea&
 
 // EXTERNAL MODULE: ./node_modules/.pnpm/vue-multiple-back-top@1.0.2/node_modules/vue-multiple-back-top/lib/back-top.js
 var back_top = __webpack_require__("6835");
@@ -10062,36 +10062,6 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 var browser = __webpack_require__("6492");
 var browser_default = /*#__PURE__*/__webpack_require__.n(browser);
 
-// EXTERNAL MODULE: ./node_modules/.pnpm/vuex@3.6.2_vue@2.6.14/node_modules/vuex/dist/vuex.esm.js
-var vuex_esm = __webpack_require__("6c71");
-
-// CONCATENATED MODULE: ./src/store/index.ts
-
-
-vue_runtime_esm["default"].use(vuex_esm["a" /* default */]);
-const STORAGE_KEY = {
-  TABLE_FULLWIDTH: "$MATABLE_CONFIG_TABLEFULLWIDTH"
-};
-/* harmony default export */ var store = (new vuex_esm["a" /* default */].Store({
-  state: {
-    data: {},
-    config: [],
-    index: 0,
-    globalConfig: {
-      title: document.title,
-      countdown: undefined,
-      copyright: true,
-      tableFullWidth: 0 < Number(window.localStorage.getItem(STORAGE_KEY.TABLE_FULLWIDTH))
-    }
-  },
-  mutations: {
-    setTableFullWidth(state, val) {
-      state.globalConfig.tableFullWidth = val;
-    }
-
-  },
-  modules: {}
-}));
 // CONCATENATED MODULE: ./src/utils/typechecker.ts
 const check = {
   isNull(val) {
@@ -10211,16 +10181,17 @@ async function xlsxParser(file) {
   });
   return xlsx_default.a.utils.sheet_to_json(workbook.Sheets["Sheet1"]);
 }
-function getAllData(force = false) {
-  const config = store.state.config;
+function getAllData(ctx, force = false) {
+  const state = Object(vue_composition_api_umd["computed"])(() => ctx.root.$store.state);
+  const config = Object(vue_composition_api_umd["computed"])(() => state.value.config);
 
-  if (config.length <= Object.keys(store.state.data).length && !force) {
+  if (config.value.length <= Object.keys(state.value.data).length && !force) {
     return;
   }
 
-  config.forEach(async (item, index) => {
+  config.value.forEach(async (item, index) => {
     if (typeof item.data !== "string" && check.isJSON(item.data)) {
-      store.state.data = { ...store.state.data,
+      state.value.data = { ...state.value.data,
         [String(index)]: [item.data[0], ...item.data]
       };
     } else {
@@ -10238,7 +10209,7 @@ function getAllData(force = false) {
         }) => label).join(",") + "\n" + res.data)).filter(e => !check.isObjectFullOfNull(e));
       }
 
-      store.state.data = { ...store.state.data,
+      state.value.data = { ...state.value.data,
         [String(index)]: data
       };
     }
@@ -10268,9 +10239,11 @@ function ajaxDownloadFile(url, name) {
     appFooter: footer,
     VmBackTop: back_top_default.a
   },
-  setup: function setup(props, ctx) {
-    var _getCurrentConfig = getCurrentConfig(ctx),
-        index = _getCurrentConfig.index;
+
+  setup(props, ctx) {
+    const {
+      index
+    } = getCurrentConfig(ctx);
 
     if (ctx.root.$route.query.index !== String(index.value)) {
       ctx.root.$router.push({
@@ -10280,8 +10253,9 @@ function ajaxDownloadFile(url, name) {
       });
     }
 
-    getAllData();
+    getAllData(ctx);
   }
+
 }));
 // CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=ts&
  /* harmony default export */ var src_Appvue_type_script_lang_ts_ = (Appvue_type_script_lang_ts_); 
@@ -10350,6 +10324,38 @@ vue_runtime_esm["default"].directive("clickoutside", {
 
 
 vue_runtime_esm["default"].use(vue_composition_api_umd_default.a);
+// EXTERNAL MODULE: ./node_modules/.pnpm/vuex@3.6.2_vue@2.6.14/node_modules/vuex/dist/vuex.esm.js
+var vuex_esm = __webpack_require__("6c71");
+
+// CONCATENATED MODULE: ./src/store/index.ts
+
+
+vue_runtime_esm["default"].use(vuex_esm["a" /* default */]);
+const STORAGE_KEY = {
+  TABLE_FULLWIDTH: "$MATABLE_CONFIG_TABLEFULLWIDTH"
+};
+function newStore() {
+  return new vuex_esm["a" /* default */].Store({
+    state: {
+      data: {},
+      config: [],
+      index: 0,
+      globalConfig: {
+        title: document.title,
+        countdown: undefined,
+        copyright: true,
+        tableFullWidth: 0 < Number(window.localStorage.getItem(STORAGE_KEY.TABLE_FULLWIDTH))
+      }
+    },
+    mutations: {
+      setTableFullWidth(state, val) {
+        state.globalConfig.tableFullWidth = val;
+      }
+
+    },
+    modules: {}
+  });
+}
 // CONCATENATED MODULE: ./node_modules/.pnpm/vue-router@3.5.2/node_modules/vue-router/dist/vue-router.esm.js
 /*!
   * vue-router v3.5.2
@@ -13578,9 +13584,34 @@ class Select {
     return arr.map(mapper);
   }
 
-  static range(fromTo, mapper = n => String(n)) {
+  static lazyRange(mapper) {
+    return fromTo => Select.range(fromTo, mapper);
+  }
+
+  static range(fromTo, mapper) {
     const [from, to] = fromTo;
-    return Array(to - from).fill(0).map((_, i) => i + fromTo[0]).map(mapper).map(Select.defaultMap);
+    return Array(to - from).fill(0).map((_, i) => i + fromTo[0]).map((v, weight) => {
+      if (!mapper) {
+        return Select.defaultMap(String(v), weight);
+      }
+
+      const item = mapper(v);
+
+      if (typeof item === "string" || typeof item === "number") {
+        const key = String(item);
+        return {
+          key,
+          weight,
+          val: key
+        };
+      } else if (Array(item)) {
+        return {
+          key: item[0],
+          val: item[1] || item[0],
+          weight: item[2] || weight
+        };
+      }
+    });
   }
 
 }
@@ -13879,8 +13910,10 @@ function useTable(ctx) {
       }
 
       if (search !== undefined && Array.isArray(search.mode)) {
-        const p1 = search.mode.find(e => e.val.toString() === String(a)).weight || Number(a);
-        const p2 = search.mode.find(e => e.val.toString() === String(b)).weight || Number(b);
+        const find = key => search.mode.find(e => e.val.toString() === String(key));
+
+        const p1 = find(a) ? find(a).weight : Number(a);
+        const p2 = find(b) ? find(b).weight : Number(b);
         return p1 - p2;
       }
 
@@ -14402,6 +14435,7 @@ class main_Matable {
     /**
      * 在 vuex 中混入配置数据
      */
+    const store = newStore();
     store.state.config = this.options;
 
     if (window.localStorage.getItem(STORAGE_KEY.TABLE_FULLWIDTH) === null) {
@@ -14430,7 +14464,7 @@ class main_Matable {
       next();
     });
     this.__vue = new vue_runtime_esm["default"]({
-      store: store,
+      store,
       router,
       render: h => h(App)
     }).$mount(target);
@@ -14440,15 +14474,22 @@ class main_Matable {
   }
 
   resolveData(conf) {
-    if (this.__store === null) {
+    if (!this.__store === null || !this.__store.state) {
       helper_warn(`Only after [render] can method [resolveData] be used`, `RESOLVE_DATA::BEFORE_RENDER`);
+      return null;
+    }
+
+    if (!conf) {
+      helper_warn(`Missing input param`, `RESOLVE_DATA::MISSING_PARAM`);
+      return null;
     }
 
     const state = this.__store.state.data;
     const config = this.__store.state.config;
+    const target = typeof conf === "string" ? conf : conf.data;
 
     for (let i in config) {
-      if (config[i].data === conf.data) {
+      if (config[i].data === target) {
         return state[i];
       }
     }
@@ -14458,7 +14499,10 @@ class main_Matable {
 
 }
 
-const init = globalConfig => new main_Matable(globalConfig);
+function init(globalConfig) {
+  return new main_Matable(globalConfig);
+}
+
 
 
 if (false) {}
@@ -19036,7 +19080,7 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 /***/ "9224":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"matable\",\"version\":\"2.1.2\",\"scripts\":{\"serve\":\"vue-cli-service serve\",\"build\":\"zx shell/build.mjs && node shell/copyDecFile.js\",\"deploy\":\"zx shell/deploy.mjs && npm publish\"},\"main\":\"dist/Matable.umd.min.js\",\"module\":\"dist/Matable.umd.min.js\",\"unpkg\":\"dist/Matable.umd.min.js\",\"types\":\"dist/matable.d.ts\",\"dependencies\":{\"core-js\":\"^3.6.5\",\"csvtojson\":\"^2.0.10\",\"muse-ui\":\"^3.0.2\",\"vue\":\"^2.6.11\",\"vue-multiple-back-top\":\"^1.0.2\",\"vuex\":\"^3.4.0\",\"xlsx\":\"^0.17.0\"},\"devDependencies\":{\"@types/fs-extra\":\"^9.0.12\",\"@types/node\":\"^16.4.7\",\"@vue/cli-plugin-babel\":\"~4.4.0\",\"@vue/cli-plugin-typescript\":\"~4.4.0\",\"@vue/cli-plugin-vuex\":\"^4.4.4\",\"@vue/cli-service\":\"~4.4.0\",\"@vue/composition-api\":\"^0.6.5\",\"axios\":\"^0.19.2\",\"enquirer\":\"^2.3.6\",\"execa\":\"^5.1.1\",\"filexon\":\"^1.1.0\",\"fs-extra\":\"^9.0.1\",\"regenerator-runtime\":\"^0.13.9\",\"rimraf\":\"^3.0.2\",\"typescript\":\"~3.9.3\",\"vue-router\":\"^3.3.4\",\"vue-template-compiler\":\"^2.6.11\"}}");
+module.exports = JSON.parse("{\"name\":\"matable\",\"version\":\"2.1.5\",\"scripts\":{\"serve\":\"vue-cli-service serve\",\"build\":\"zx shell/build.mjs && node shell/copyDecFile.js\",\"deploy\":\"zx shell/deploy.mjs && npm publish\"},\"main\":\"dist/Matable.umd.min.js\",\"module\":\"dist/Matable.umd.min.js\",\"unpkg\":\"dist/Matable.umd.min.js\",\"types\":\"dist/matable.d.ts\",\"dependencies\":{\"core-js\":\"^3.6.5\",\"csvtojson\":\"^2.0.10\",\"muse-ui\":\"^3.0.2\",\"vue\":\"^2.6.11\",\"vue-multiple-back-top\":\"^1.0.2\",\"vuex\":\"^3.4.0\",\"xlsx\":\"^0.17.0\"},\"devDependencies\":{\"@types/fs-extra\":\"^9.0.12\",\"@types/node\":\"^16.4.7\",\"@vue/cli-plugin-babel\":\"~4.4.0\",\"@vue/cli-plugin-typescript\":\"~4.4.0\",\"@vue/cli-plugin-vuex\":\"^4.4.4\",\"@vue/cli-service\":\"~4.4.0\",\"@vue/composition-api\":\"^0.6.5\",\"axios\":\"^0.19.2\",\"enquirer\":\"^2.3.6\",\"execa\":\"^5.1.1\",\"filexon\":\"^1.1.0\",\"fs-extra\":\"^9.0.1\",\"regenerator-runtime\":\"^0.13.9\",\"rimraf\":\"^3.0.2\",\"typescript\":\"~3.9.3\",\"vue-router\":\"^3.3.4\",\"vue-template-compiler\":\"^2.6.11\"}}");
 
 /***/ }),
 
