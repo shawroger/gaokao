@@ -25,11 +25,12 @@ function h(
 	return createConf(["./@data/" + file, title], config, customConf);
 }
 
-const 班级 = Select.range([1, 17], (i) => [i + " 班", i]);
+const 班级Range = Select.lazyRange((i) => [i + " 班", i]);
+const 班级 = 班级Range([1, 17]);
 
 const d2021 = h(["2021.xlsx", "2021高考录取结果"], {
 	姓名: "",
-	班级,
+	班级: 班级Range([1, 25]),
 	科类: ["理科", "文科"],
 	总分: 0,
 	学校: "",
