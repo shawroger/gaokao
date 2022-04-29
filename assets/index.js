@@ -93,7 +93,14 @@ const d2018_s = h(["2018_s.xlsx", "2018科目成绩详情"], {
 	综合: 0,
 });
 
-const configList = [d2021, d2020, d2019_1, d2019_2, d2018, d2018_s];
+const d2017 = h(["2017.xlsx", "2017高考录取结果"], {
+	班级: 班级Range([1, 16]),
+	姓名: "",
+	学校: "",
+	类别: ["C9", "985", "211", "提前", "独立"],
+});
+
+const configList = [d2021, d2020, d2019_1, d2019_2, d2018, d2018_s, d2017];
 
 const matable = Matable.init({
 	copyright: true,
