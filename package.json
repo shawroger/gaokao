@@ -24,6 +24,7 @@
 	"dependencies": {
 		"atomic-sleep": "^1.0.0",
 		"fs-extra": "^10.0.0",
+		"material-icons": "^1.11.1",
 		"request": "^2.88.2",
 		"tslib": "^2.3.0"
 	},

@@ -106,8 +106,8 @@ const matable = Matable.init({
 	copyright: true,
 	title: "宁国中学高考数据查询",
 	countdown: {
-		name: "二〇二二 高考倒计时",
-		date: "2022-06-07 09:00:00",
+		name: "2023 高考",
+		//date: "2023-06-07 09:00:00",
 	},
 })
 	.config(configList)
