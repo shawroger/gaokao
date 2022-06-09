@@ -12,4 +12,8 @@ await $`git commit -m  ${msg || "init"}`;
 
 await $`git push origin master`;
 
-console.log(chalk.blue("上传成功！"));
+console.log(chalk.blue("gitee 仓库上传成功！"));
+
+await $`git push github master`;
+
+console.log(chalk.blue("github 仓库上传成功！"));
