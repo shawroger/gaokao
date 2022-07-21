@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@types/fs-extra': ^9.0.12
@@ -8,6 +8,7 @@ specifiers:
   fs-extra: ^10.0.0
   material-icons: ^1.11.1
   request: ^2.88.2
+  tsconfig-paths: ^4.0.0
   tslib: ^2.3.0
 
 dependencies:
@@ -21,6 +22,7 @@ devDependencies:
   '@types/fs-extra': 9.0.12
   '@types/node': 16.4.8
   '@types/request': 2.48.7
+  tsconfig-paths: 4.0.0
 
 packages:
 
@@ -230,6 +232,12 @@ packages:
     resolution: {integrity: sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=}
     dev: false
 
+  /json5/2.2.1:
+    resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dev: true
+
   /jsonfile/6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
     dependencies:
@@ -261,6 +269,10 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.49.0
+
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: true
 
   /oauth-sign/0.9.0:
     resolution: {integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==}
@@ -335,6 +347,11 @@ packages:
       tweetnacl: 0.14.5
     dev: false
 
+  /strip-bom/3.0.0:
+    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
+    engines: {node: '>=4'}
+    dev: true
+
   /tough-cookie/2.5.0:
     resolution: {integrity: sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==}
     engines: {node: '>=0.8'}
@@ -342,6 +359,14 @@ packages:
       psl: 1.8.0
       punycode: 2.1.1
     dev: false
+
+  /tsconfig-paths/4.0.0:
+    resolution: {integrity: sha512-SLBg2GBKlR6bVtMgJJlud/o3waplKtL7skmLkExomIiaAtLGtVsoXIqP3SYdjbcH9lq/KVv7pMZeCBpLYOit6Q==}
+    dependencies:
+      json5: 2.2.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
 
   /tslib/2.3.0:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}

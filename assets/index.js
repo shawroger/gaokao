@@ -28,6 +28,15 @@ function h(
 const 班级Range = Select.lazyRange((i) => [i + " 班", i]);
 const 班级 = 班级Range([1, 17]);
 
+const d2022_tqp = h(["2022_tqp.xlsx", "2022高考录取结果（提前批）"], {
+	姓名: "",
+	班级: 班级Range([1, 28]),
+	// 科类: ["理科", "文科"],
+	学校: "",
+	专业: "",
+	层次: ["C9", "985", "211", "军事公安", "一本", "专科"],
+});
+
 const d2021 = h(["2021.xlsx", "2021高考录取结果"], {
 	姓名: "",
 	班级: 班级Range([1, 25]),
@@ -100,7 +109,7 @@ const d2017 = h(["2017.xlsx", "2017高考录取结果"], {
 	类别: ["C9", "985", "211", "提前", "独立"],
 });
 
-const configList = [d2021, d2020, d2019_1, d2019_2, d2018, d2018_s, d2017];
+const configList = [d2022_tqp, d2021, d2020, d2019_1, d2019_2, d2018, d2018_s, d2017];
 
 const matable = Matable.init({
 	copyright: true,
