@@ -1,4 +1,5 @@
 import fse from "fs-extra";
+import path from "path";
 import request from "request";
 //@ts-ignore
 import sleep from "atomic-sleep";
@@ -10,7 +11,11 @@ if (token === null) {
 	throw new Error("token not found \n try run `npm run token` first");
 }
 
-const image = Buffer.from(fse.readFileSync(dir + "\\0.jpg")).toString("base64");
+let xid = 36;
+
+const image = Buffer.from(
+	fse.readFileSync(dir + "\\image\\" + xid + ".png")
+).toString("base64");
 
 let queryTimes = 1;
 
@@ -78,6 +83,7 @@ function queryFile(id: string) {
 				) {
 					const file = res["result"]["result_data"];
 					console.log("文件下载地址：" + file + "即将自动下载");
+					console.log("id = " + xid);
 					return downloadFile(file);
 				} else {
 					console.log(`第${queryTimes}次请求未完成，2秒稍后自动重试`);
@@ -91,7 +97,7 @@ function queryFile(id: string) {
 }
 
 function downloadFile(url: string) {
-	const filename = dir + "\\result.xls";
+	const filename = dir + "\\result-" + xid + ".xls";
 	const stream = fse.createWriteStream(filename);
 	request(url)
 		.pipe(stream)
